@@ -1,0 +1,15 @@
+#+TITLE: Estratégia para a projeção de um software (nome a definir)
+
+* Estudo de viabilidade
+
+* Análise de requisitos
+
+* Especificação de requisitos
+
+* Validação de requisitos
+
+* Definição datas
+
+| Entrega | Do | Doing | Done | DoD |
+|---------+----+-------+------+-----|
+|         |    |       |      |     |
