@@ -1,0 +1,57 @@
+#+TITLE: Projeto de engenharia de software
+
+* Equipe
+  - Leon Ferreira Bellini RA: 22218002-8
+  - Guilherme Ormond Sampaio RA: 22218007-7
+    
+* Proposta 
+  Desenvolvimento de uma aplicação para a matéria de engenharia de /software/, 
+  baseando-se nos modelos propostos em aula para a organização, exposição e 
+  modificação de ideias, bem como a distribuição das tarefas por 
+  entre os membros da dupla. 
+ 
+  Contanto, devido ao simples fato do grupo ser uma dupla, tanto a capacidade
+  produtiva quanto a disponibilidade na questão de horas de trabalho estariam 
+  limitadas. Como forma de contornar as dificuldades que surgiriam ao se propor
+  um projeto de grande escalas, o grupo pretende se restringir ao espaço da 
+  universidade.
+
+** Os modelos 
+   Não existem motivos para a 
+   utilização de um modelo para projetos de grande escala como *SCRUM*, 
+   uma vez que a quantidade de pessoal necessária para tal excede a quantia 
+   de membros do grupo. Ergo, modelos convencionais como cascata e incremental
+   seriam mais apropriados. Dentre os ágeis, o XP (/eXtreme Programming/) também 
+   apresenta-se viável. Os modelos os quais apresentam uma distribuição de papéis
+   mais "dinâmica" têm prioridade devido à preferência dos membros da equipe. 
+
+** A aplicação em si 
+   Os laboratórios para livre uso localizados no bloco K do centro universitário 
+   FEI são um dos poucos lugares para utilização dos /softwares/ proprietários 
+   requisitados por grande parte das matérias, bem como servirem de ótimos locais
+   para estudo. Portanto, durante a época de provas ocorre a superlotação da maioria
+   ou de todos estes laboratórios. A criação de um sistema o qual possa informar
+   os alunos se existem vagas disponíveis e/ou todos os laboratórios estão sendo
+   utilizados poupariam estes de realizar viagens desnecessárias, economizando 
+   tempo no processo. A aplicação de tal proposta seria realizada através de terminais, 
+   proporcionando funções de busca e filtros por softwares.
+
+*** O sistema   
+    Unindo duas (possivelmente três) das matérias do semestre, o sistema se basearia
+    na interação básica cliente-servidor, tendo cada um dos computadores dos laboratórios 
+    enviando após sua inicialização as informações referentes a quantos alunos estão o 
+    utilizando e se há um tempo previsto para o término de seu uso.
+    
+    O servidor, no caso, receberia tal informação e processaria da maneira a qual for
+    determinada apropriada. A interface também informaria quais programas estão 
+    disponíveis no laboratório em questão.
+   
+** Organização
+   Sendo um dos pacotes/modos mais populares do editor GNU/Emacs, o *org-mode* é 
+   perfeito para a definição de listas *TODO*, bem como /checklists/ e tabelas 
+   de uma forma geral. Pelo grupo já se apresentar acostumado com este sistema, 
+   todos os documentos relacionados à organização serão estruturados como 
+   documentos *org*. 
+
+** O próximo passo
+   Tabela Kanban (?)
