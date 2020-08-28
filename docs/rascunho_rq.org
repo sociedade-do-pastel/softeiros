@@ -1,0 +1,27 @@
+** Requisitos Funcionais
+*** Busca
+    A procura realizada por um usuário, seja este usuário administrador do setor
+    *CGI* ou aluno, com o objetivo de conhecer a disponibilidade de um computador
+    em um dos laboratórios disponíveis. 
+
+*** Categorização
+    Integrado ao sistema de filtros, a categorização auxiliaria na distribuição
+    das máquinas por entre os alunos interessados em acessar estas.
+
+*** Filtros
+    Juntamente ao sistema de busca, os filtros garantiriam a separação dos computadores
+    em relação a termos únicos escolhidos pelos alunos. Esta separação poderia 
+    ser realizada por fatores como /softwares/ disponíveis nas máquinas, 
+    lugares físicos no próprio laboratório, localização em relação ao andar no prédio.
+
+** Requisitos não funcionais
+*** Integração ao sistema de rede interna através das camadas de transporte e aplicação
+    - SNMP
+    - Biblioteca de /sockets/ nativa do CPP
+
+*** QT para desenvolvimento da interface    
+    Ferramenta com melhor integração com o CPP no mercado, com licença livre. 
+
+
+      
+
