@@ -1,0 +1,20 @@
+#+TITLE: Questionário (rough)
+
+* Questões iniciais (6)
+
+1. É importante que haja a distribuição dos usuários por entre os laboratórios.
+
+2. É válido que ocorra uma troca entre tempo de caminhada e disposição de um laboratório não lotado.
+
+3. É relevante poder filtrar os laboratórios por peças de /software/ disponíveis.
+
+4. É importante que esteja disposto um mapa para cada laboratório, o qual possa 
+   disponibilizar informações como número de usuários, máquinas sendo utilizadas
+   e a posição delas.
+
+5. É relevante a disponibilidade de um filtro por quantidade de 
+   computadores disponíveis num laboratório.
+
+6. É relevante a presença de um "nível de interesse" apresentado
+   sobre cada máquina. Este mostraria quantas pessoas desejam utilizar 
+   aquele computador.
