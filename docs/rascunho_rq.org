@@ -1,4 +1,32 @@
+* Análise de requisitos
+** Cenários
+|---------------------+--------------------------------------------------|
+| *Nome*              | Utilização dos laboratórios CGI.                 |
+|---------------------+--------------------------------------------------|
+| *Atores*            | Secretaria;                                      |
+|                     | CGI;                                             |
+|                     | Alunos.                                          |
+|---------------------+--------------------------------------------------|
+| *Pré-condição*      | Checar requisitos funcionais ([[reqFunc]]) e não     |
+|                     | funcionais ([[reqNFunc]]).                           |
+|---------------------+--------------------------------------------------|
+| *Fluxo normal*      | Após a busca do usuário, o sistema retornará o   |
+|                     | laboratório mais apto aos requisitos inseridos,  |
+|                     | considerando também a distribuição dos alunos    |
+|                     | por entre os laboratórios.                       |
+|---------------------+--------------------------------------------------|
+| *Fluxo alternativo* | Mudanças físicas nas instalações da FEI;         |
+|                     | Superlotação dos laboratórios.                   |
+|---------------------+--------------------------------------------------|
+| *Pós-condição*      | O software seria aplicado em terminais de        |
+|                     | acesso na circunvizinhaça dos laboratórios, com  |
+|                     | ampla utilização. Ao ocorrer mudanças físicas    |
+|                     | nas instalações o software se adaptará apenas    |
+|                     | com o detecção das máquinas concebidas pelo CGI. |
+|---------------------+--------------------------------------------------|
+
 ** Requisitos Funcionais
+<<reqFunc>>
 *** Busca
     A procura realizada por um usuário, seja este usuário administrador do setor
     *CGI* ou aluno, com o objetivo de conhecer a disponibilidade de um computador
@@ -13,15 +41,11 @@
     em relação a termos únicos escolhidos pelos alunos. Esta separação poderia 
     ser realizada por fatores como /softwares/ disponíveis nas máquinas, 
     lugares físicos no próprio laboratório, localização em relação ao andar no prédio.
-
 ** Requisitos não funcionais
+<<reqNFunc>>
 *** Integração ao sistema de rede interna através das camadas de transporte e aplicação
     - SNMP
     - Biblioteca de /sockets/ nativa do CPP
 
 *** QT para desenvolvimento da interface    
-    Ferramenta com melhor integração com o CPP no mercado, com licença livre. 
-
-
-      
-
+    Ferramenta com melhor integração com o CPP no mercado, com licença livre.
