@@ -7,8 +7,8 @@
 |                     | CGI;                                             |
 |                     | Alunos.                                          |
 |---------------------+--------------------------------------------------|
-| *Pré-condição*      | Checar requisitos funcionais ([[reqFunc]]) e não     |
-|                     | funcionais ([[reqNFunc]]).                           |
+| *Pré-condição*      | Checar requisitos funcionais ([[#requisitos-funcionais][1]]) e não |
+|                     | funcionais ([[#requisitos-não-funcionais][2]]).  |
 |---------------------+--------------------------------------------------|
 | *Fluxo normal*      | Após a busca do usuário, o sistema retornará o   |
 |                     | laboratório mais apto aos requisitos inseridos,  |
@@ -26,7 +26,6 @@
 |---------------------+--------------------------------------------------|
 
 ** Requisitos Funcionais
-<<reqFunc>>
 *** Busca
     A procura realizada por um usuário, seja este usuário administrador do setor
     *CGI* ou aluno, com o objetivo de conhecer a disponibilidade de um computador
@@ -42,7 +41,6 @@
     ser realizada por fatores como /softwares/ disponíveis nas máquinas, 
     lugares físicos no próprio laboratório, localização em relação ao andar no prédio.
 ** Requisitos não funcionais
-<<reqNFunc>>
 *** Integração ao sistema de rede interna através das camadas de transporte e aplicação
     - SNMP
     - Biblioteca de /sockets/ nativa do CPP
