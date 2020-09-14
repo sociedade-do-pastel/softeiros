@@ -1,0 +1,24 @@
+#+TITLE: Análise de riscos através das matrizes SWOT.
+
+* O grupo
+
+#+name: fig:SWOT_grupo
+[[file:../imgs/swotGrupo.png]]
+
+** O que o grupo aprendeu?
+   A confecção desta matriz SWOT deixou claro muitos dos pontos fortes da dupla,
+   alguns dos quais nem eram conhecidos, mesmo que ambos os membros já tenham 
+   trabalhado em conjunto anteriormente. Além disso, pelo fato de ser exatamente
+   uma técnica para análise de riscos, a aparição de "perigos", estes podendo 
+   interromper ou até mesmo cancelar o projeto, surpreendeu os membros
+   ao ilustrar possíveis cenários caóticos.
+   A modificação futura de tal matriz pode ter impacto no processo 
+   geral do desenvolvimento do software em questão. 
+
+
+
+* Aplicação sobre o /hardware/ e /software/
+[[file:../imgs/swotHardware.png]]
+
+* Regras de negócio
+[[file:../imgs/swotEmpresa.png]]
