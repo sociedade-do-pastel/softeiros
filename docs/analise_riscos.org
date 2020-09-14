@@ -10,12 +10,17 @@
    alguns dos quais nem eram conhecidos, mesmo que ambos os membros já tenham 
    trabalhado em conjunto anteriormente. Além disso, pelo fato de ser exatamente
    uma técnica para análise de riscos, a aparição de "perigos", estes podendo 
-   interromper ou até mesmo cancelar o projeto, surpreendeu os membros
+   interromper ou até mesmo cancelar o projeto, surpreendeu os integrantes
    ao ilustrar possíveis cenários caóticos.
    A modificação futura de tal matriz pode ter impacto no processo 
    geral do desenvolvimento do software em questão. 
 
-
+** É SMART?
+   - *S*: Especifica ao se limitar nos domínios de conhecimento do grupo
+   - *M*: Ainda que nichado, foi criada uma "folga" para o desenvolvimento em geral do /software/.
+   - *A*: Alcançável, uma vez que inicialmente, o projeto fora pensado com o tamanho geral da equipe em mente
+   - *R*: Relevante, ao se utilizar da capacidade da dupla para resolver um problema existente
+   - *T*: Temporal ao depender do semestre letivo da faculdade. O grupo tem em mente quais são as /DEADLINES/
 
 * Aplicação sobre o /hardware/ e /software/
 [[file:../imgs/swotHardware.png]]
