@@ -5,7 +5,14 @@
 #+name: fig:SWOT_grupo
 [[file:../imgs/swotGrupo.png]]
 
-** O que o grupo aprendeu?
+* Aplicação sobre o /hardware/ e /software/
+[[file:../imgs/swotHardware.png]]
+
+* Regras de negócio
+[[file:../imgs/swotEmpresa.png]]
+* Opiniões da dupla
+** SWOT para o grupo  
+*** O que o grupo aprendeu?
    A confecção desta matriz SWOT deixou claro muitos dos pontos fortes da dupla,
    alguns dos quais nem eram conhecidos, mesmo que ambos os membros já tenham 
    trabalhado em conjunto anteriormente. Além disso, pelo fato de ser exatamente
@@ -15,15 +22,66 @@
    A modificação futura de tal matriz pode ter impacto no processo 
    geral do desenvolvimento do software em questão. 
 
-** É SMART?
-   - *S*: Especifica ao se limitar nos domínios de conhecimento do grupo
+*** É SMART?
+   - *S*: Específica ao se limitar nos domínios de conhecimento do grupo
    - *M*: Ainda que nichado, foi criada uma "folga" para o desenvolvimento em geral do /software/.
    - *A*: Alcançável, uma vez que inicialmente, o projeto fora pensado com o tamanho geral da equipe em mente
    - *R*: Relevante, ao se utilizar da capacidade da dupla para resolver um problema existente
    - *T*: Temporal ao depender do semestre letivo da faculdade. O grupo tem em mente quais são as /DEADLINES/
 
-* Aplicação sobre o /hardware/ e /software/
-[[file:../imgs/swotHardware.png]]
 
-* Regras de negócio
-[[file:../imgs/swotEmpresa.png]]
+
+
+** SWOT para o /hardware/ e /software/ em questão
+*** O que o grupo aprendeu?
+    Ambos fatores determinam o quão limitado tecnicamente um projeto será,
+    "limitado" sendo o termo mais apropriado para este contexto. No caso, tais
+    barreiras ajudam na determinação de componentes de /software/ e como
+    estes serão implementados, ajudando também na avaliação quanto à necessidade
+    ou não de realizar um processo de otimização mais brando. Questões como
+    documentação geral do /software/ também auxiliam futuros mantenedores do
+    projeto criado. Tais partes negativas surgiriam, então, do eventual descuido
+    da dupla com o cálculo de tais limites.
+    
+*** É SMART?
+   - *S*: Talvez a aplicação mais "específica", a moldagem do projeto deve levar
+     em conta as limitações de /hardware/, /software/ e o "ecossistema" criado
+     pelo grupo quando são levadas em conta as ferramentas a serem utilizadas. 
+   - *M*: Na questão de tempo, a determinação de /frameworks/ apropriadas para
+     o desenvolvimento do projeto auxiliam no quão cedo o ato de /deploying/ poderá ocorrer.
+   - *A*: A possibilidade do projeto já foi provada alcançável nas fases iniciais
+     de planejamento.
+   - *R*: Relevante para o grupo ao testar suas habilidades na implementação ao se
+     utilizar de ferramentas já conhecidas. 
+   - *T*: As limitações impostas por estes fatores também determinam que o tempo
+     para implementação seja finito, uma vez que não se pode ocorrer uma programação
+     perpetual até o fim do semestre letivo.
+
+** SWOT para as regras de negócio
+*** O que o grupo aprendeu?
+    Os benefícios propostos para a empresa contratante quando estes "recebem" o
+    projeto devem ser corretamente quantizados e apresentados,
+    uma vez que estes poderiam decidir,
+    ou não, se é um investimento válido. A resolução do(s) problema(s) propostos,
+    teria que, então, entregar valor para a empresa ao se provar lucroso/beneficial.
+    A desconstrução deste problema X deve ser, por fim, realizada com cautela para,
+    então, provar que tal problema *não é trivial*. 
+
+*** É SMART?
+   - *S*: Ao se tomar a perspectiva da empresa, a "especificidade" do projeto
+     se torna clara ao focar num único ponto (laboratórios) e resolver o conjunto
+     de problemas relacionados a este "micro-mundo" da empresa.
+   - *M*: Mensurável quando consideradas as possíveis demandas temporais da empresa.
+   - *A*: Possível ser realizado pela empresa, objetivo o qual pode ser completado
+     por empresas ou grupos rivais, inclusive. Tempo e custo são fatores que podem
+     incentivar uma empresa em sua escolha.
+   - *R*: Relevante para empresa ao resolver um problema já existente e, possivelmente,
+     trazer satisfação aos seus clientes.
+   - *T*: A resolução de forma rápida de tal problema é de extrema importância
+     para o negócio. O tempo para isso acontecer é determinado pelos contratantes.
+
+
+
+
+
+   
