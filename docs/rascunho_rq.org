@@ -7,8 +7,8 @@
 |                     | CGI;                                             |
 |                     | Alunos.                                          |
 |---------------------+--------------------------------------------------|
-| *Pré-condição*      | Checar requisitos funcionais ([[#requisitos-funcionais][1]]) e não |
-|                     | funcionais ([[#requisitos-não-funcionais][2]]).  |
+| *Pré-condição*      | Checar requisitos funcionais ([[#requisitos-funcionais][1]]) e não           |
+|                     | funcionais ([[#requisitos-não-funcionais][2]]).                                  |
 |---------------------+--------------------------------------------------|
 | *Fluxo normal*      | Após a busca do usuário, o sistema retornará o   |
 |                     | laboratório mais apto aos requisitos inseridos,  |
@@ -47,3 +47,9 @@
 
 *** QT para desenvolvimento da interface    
     Ferramenta com melhor integração com o CPP no mercado, com licença livre.
+** Escala Likert
+A criação da escala Likert foi feita através de um questionário hospedado na
+plataforma Google /Forms/ ([[https://docs.google.com/forms/d/e/1FAIpQLScapXQgEmBAhR38dpN7fkfFj_eIeJKFhAi-T7bEsnQk8eBwrw/viewform][link para o questionário]]) e a escala Likert foi
+implementada com os dados computados até a data *17/09/20*.
+
+[[file:~/softeiros/imgs/likert.png]]
