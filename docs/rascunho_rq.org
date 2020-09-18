@@ -52,4 +52,4 @@ A criação da escala Likert foi feita através de um questionário hospedado na
 plataforma Google /Forms/ ([[https://docs.google.com/forms/d/e/1FAIpQLScapXQgEmBAhR38dpN7fkfFj_eIeJKFhAi-T7bEsnQk8eBwrw/viewform][link para o questionário]]) e a escala Likert foi
 implementada com os dados computados até a data *17/09/20*.
 
-[[file:~/softeiros/imgs/likert.png]]
+[[file:../imgs/likert.png]]
