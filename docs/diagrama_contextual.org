@@ -1,0 +1,48 @@
+#+TITLE: Diagrama de Contexto Avançado 
+#+begin_src plantuml :file diagramo_cont.png :exports results 
+  node "Dispositivo" {
+
+	  package "Front-end cliente" {
+		  [CliEnter] 
+	  }
+	  package "Logica cliente" {
+		  [LogicaCliEnter] - AcessaDados
+		  [CliEnter] ..> AcessaDados 
+	  }
+  }
+  node "Computador" {
+	  package "Front-end administrador" {
+		  [AdmEnter]  
+	  }
+
+	  package "Logica administrador" {
+		  [LogicaAdmEnter] - GestaoDados
+		  [AdmEnter] ..> GestaoDados 
+	  }
+  }
+					
+  node "Servidor" {
+	  package "Back-end" {
+		  [MainServer] - SocketServer
+		  [LogicaCliEnter] ..> SocketServer : Acessa
+		  [LogicaAdmEnter] ..> SocketServer : Acessa
+
+	  database "Salinhas" as Sal {
+
+		  folder "computador" {
+			  [relComputador]
+			  }
+		  folder "sala" {
+			  [relSala]
+			  }
+		  }
+	  }
+  }
+									
+  [MainServer] ..> Sal  :  Acessa
+  [relSala] -> [relComputador] : Contém
+#+end_src
+
+#+RESULTS:
+[[file:diagramo_cont.png]]
+

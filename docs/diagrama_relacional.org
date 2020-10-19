@@ -1,0 +1,41 @@
+#+TITLE: Diagrama Relacional Database
+
+#+begin_src plantuml :file diagramo_rel.png :exports results
+  scale 600*900
+  hide circle
+  entity sala {
+	  ,* **nome_sala** : TEXT <<PK>>
+	  --
+	  hora_fechamento : TEXT 
+	  ip_sala : TEXT 
+  }
+
+  entity computador {
+	  ,* **id_computador** : TEXT <<PK>>
+	  --
+
+  }
+
+  entity sala_comp {
+	  ,* **id_computador** : TEXT <<FK>>
+	  ,* nome_sala     : TEXT <<FK>>
+	  qtd_computadores : INTEGER
+  }
+
+  entity softwares_desp {
+	  ,* **nome_software** : TEXT <<PK>>
+	  --
+	  ,* id_computador : TEXT <<FK>>
+  }
+
+  sala .. sala_comp : (1, N)
+  sala_comp .. computador : (1, 1)
+  computador . softwares_desp 
+
+#+end_src
+
+#+RESULTS:
+[[file:diagramo_rel.png]] 
+
+
+
