@@ -1,6 +1,6 @@
 #+TITLE: Diagrama Relacional Database
 
-#+begin_src plantuml :file diagramo_rel.png :exports results
+#+begin_src plantuml :file ../imgs/diagramo_rel.png :exports results
   scale 600*900
   hide circle
   entity sala {
@@ -35,7 +35,7 @@
 #+end_src
 
 #+RESULTS:
-[[file:diagramo_rel.png]] 
+[[file:../imgs/diagramo_rel.png]]
 
 
 

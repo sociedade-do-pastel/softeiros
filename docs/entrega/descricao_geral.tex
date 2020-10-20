@@ -1,0 +1,193 @@
+% Created 2020-10-20 Tue 03:52
+% Intended LaTeX compiler: pdflatex
+\documentclass[11pt, a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{grffile}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage[left=3cm, top=3cm, right=2cm, bottom=2cm]{geometry}
+\usepackage[brazilian, ]{babel}
+\usepackage{indentfirst}
+\author{Leon Ferreira Bellini}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Leon Ferreira Bellini},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 27.1 (Org mode 9.4)}, 
+ pdflang={Breton}}
+\begin{document}
+
+
+\begin{titlepage}
+\begin{center}
+Centro Universitário FEI
+\end{center}
+\vspace*{\fill}
+\begin{center}
+  \huge{Avai\textbf{Lab}le: Informativo quanto as vagas disponíveis nos laboratórios CGI}
+\end{center}
+\vspace*{\fill}
+  \Large{Leon Ferreira Bellini} \\
+  \small{22218002-8} \\\\
+  \Large{Guilherme Ormond Sampaio} \\
+  \small{22218007-7}
+\end{titlepage}
+
+\tableofcontents
+
+\clearpage
+
+\section{Introdução}
+\label{sec:org42fe0eb}
+Diante de uma época considerada ``normal'' quando se refere as atividades do
+\textbf{Centro Universitário FEI}, muitos dos alunos os quais dependem dos vários
+laboratórios disponíveis para livre uso, certamente notaram que estes
+se encontravam 
+lotados, principalmente durante os períodos de provas \textbf{P1}
+(para os cursos que ainda as possuem) e \textbf{P2}.
+
+Para resolver tal problema, imaginando um indivíduo vinculado à empresa,
+o qual possui o trabalho de resolver problemas genéricos, este pode
+pensar nas seguintes possibilidades:
+
+\begin{enumerate}
+\item Adquirir novas unidades de computadores, mesas e cadeiras
+(cabos e instalação inclusos no cenário)
+\item Construir um novo laboratório (cenário 1 implícito, mais caro)
+\item Desenvolver um \textbf{sistema} para, ao menos, refrear a superlotação dos laboratórios
+a partir da realização de uma gestão propriamente dita, levando em conta
+o comportamento dos \textbf{usuários finais} (alunos).
+\item Limitar a entrada de usuários, impondo condições severas em relação ao
+uso das máquinas e lugares disponíveis 
+(não mais que \textbf{n} pessoas presentes ou uma máquina a cada duas pessoas são possíveis restrições)
+\end{enumerate}
+
+Deve-se lembrar, entretanto, que existem finitas soluções possíveis as quais
+englobam tanto curto, quanto longo prazo. Porém, o grupo, defronte ao
+potencial da opção quatro (4), decidiu implementar um sistema de software
+capaz de realizar tal ação. 
+
+\section{Discussão}
+\label{sec:org4c57f53}
+Alinhado aos princípios da empresa como entrega de conhecimento de forma
+ágil, digital e dinâmica está presente um dos métodos 
+de desenvolvimento de \emph{software} ágil, o chamado \textbf{XP} ou \textbf{Extreme Programming}
+o qual se baseia num ciclo simples onde relatos (ou histórias) dos usuários,
+têm extrema relevância, estas
+entrando em foco para "moldar" o produto final (\ref{org376bcb0}). Será mesclado
+a este processo os métodos já utilizados pelo grupo em experiencias anteriores,
+estes serão explicitados em seções posteriores.
+
+\subsection{A escolha da Programação Extrema}
+\label{sec:org7a53bc8}
+Por ser um método ágil, contendo ``apenas'' quatro passos para a implementação
+propriamente dita de um componente e, tendo como parte fundamental da fase de
+\textbf{codificação} a programação em duplas, o \textbf{XP} foi escolhido por cobrir a
+o fato de que a equipe não conta com mais do que, exatamente, dois integrantes.
+Qualquer
+outro método não foi enxergado como apropriado com o estilo de trabalho da
+equipe. Além disso, a proximidade com o usuário ao incluir suas histórias como
+elemento essencial para a produção dos \textbf{cartões CRC} gera a oportunidade de
+desenvolver o melhor produto para tais indivíduos. Pode-se realizar a comparação
+com um acionista, por exemplo. Um usuário o qual tenha exigências
+quanto a um futuro \emph{software} cria sua história (investe), esperando que
+suas experiências tenham um retorno direto (o \emph{software}) e neste caso,
+devido à agilidade do \textbf{XP}, a entrega é rápida.
+
+\subsection{O \emph{workflow} do grupo}
+\label{sec:orgbb00d6a}
+Como dito anteriormente, a equipe ``adaptou'' o método \textbf{XP} para melhor trabalhar
+durante os quatro meses de desenvolvimento. A forma pela qual ocorreu estas
+mudanças serão informadas nas próximas seções. De forma de se conter no ciclo
+de desenvolvimento do \textbf{XP}, a equipe realiza encontros a cada três dias na
+plataforma \textbf{VOIP} \emph{Discord} (\ref{org2d92571}) para cumprir com cada responsabilidade gerada
+pelas primeiras \textbf{etapas}.
+
+\subsubsection{Planejamento}
+\label{sec:org98c08c4}
+Pode-se traçar uma relação com a fase de \textbf{coleta de requisitos}, porém esta
+de forma ``mini'', cada usuário entrevistado (estes sendo, em sua totalidade,
+estudantes da FEI), relata suas experiências quando interagindo com o universo
+em que o \emph{software} terá influência futuramente. É então, realizada para eles,
+a pergunta, "O quão relevante é para você que esta característica seja implementada?".
+Uma resposta, por exemplo, sendo "De extrema relevância", possivelmente
+garantiria a uma dessas ``features'' prioridade também extrema. Similarmente,
+prioridades de pesos diferentes são dadas a relatos de mesmo peso. Logo,
+esta fase determina o que será trabalhado pelos próximos dias. 
+
+Devido ao tempo limitado que a equipe possui, ainda ocorre um processo de
+filtragem durante as reuniões, nas quais a dupla escolhe dentre as consideradas
+"mais relevantes" as que são essenciais para, pelo menos, apresentação do projeto.
+
+Além do mais, não são requisitadas dos usuários divisões de histórias em ``sub-histórias''
+e o peso dado para cada história determinada nos cartões é em \textbf{dias}.  
+
+\subsubsection{Projeto}
+\label{sec:orgd29618a}
+Essenciais para a determinação do que será programado pela equipe na próxima
+etapa, os cartões \textbf{CRC} (Classe-Responsabilidade-Colaborador) são concebidos 
+ao se basear nos componentes definidos à partir das histórias dos usuários
+da fase anterior. A cada reunião de projeto, é feito um cartão \textbf{CRC} em
+um arquivo \textbf{org}, linguagem de \emph{markdown} a qual facilita a formatação de
+documentos destinados à gestão de tempo por \emph{scheduling}, listas \emph{TODO} e
+planilhas. O arquivo, então, fica à disposição para futuras consultas.
+O \textbf{org-mode} é parte do editor de texto GNU/Emacs (\ref{orge0df9e4}),
+o qual é utilizado pela equipe
+em todas as fases. A partir do momento que este cartão se apresenta terminado,
+é adicionado um novo componente no \textbf{diagrama de componentes} o qual será
+apresentado em relatório posterior, bem como uma nova classe relacionada
+ao novo componente. É correto afirmar que esta fase define como será implementado
+o componente em foco de forma técnica, uma vez que, acompanhado ao cartão CRC,
+está a elaboração da classe em si no sistema orientado à objetos que o projeto
+incluí.
+
+A dupla não cria protótipos. 
+
+\subsubsection{Codificação}
+\label{sec:orgbc16847}
+Uma vez que a dupla de programadores também forma a equipe por completo,
+todo o processo de criação de testes unitários (o conjunto de \emph{stubs} e \emph{drivers})
+e o ato de codificação em si ocorre ``de uma vez'', a implementação, na maioria das
+vezes, é concluída em uma e, raramente, duas reuniões de codificação. O arquivo \textbf{org} de
+cronograma é, então, atualizado ao fim dos testes.
+
+\subsubsection{Testes}
+\label{sec:org1aa3510}
+Possivelmente a fase mais importante para o desenvolvimento de um sistema
+robusto, pode-se dizer que, para o grupo, a fase de testes é \textbf{constante}, dado
+que a fase de codificação já incluí o teste unitário como essencial. Nesta
+fase, a equipe também aplica o que foi determinado no documento de
+\textbf{Especificação de teste}. A fase de testes assegura que o grupo possa ``zerar''
+o ciclo e começar uma nova fase de planejamento, já que, isoladamente, o
+componente produzido não apresenta mais erros ou \emph{bugs}. O grupo escolheu
+por apenas realizar o teste \emph{top-down} ao final da programação de todos
+os componentes de um \emph{package}, este definido no \textbf{diagrama de componentes}.
+
+
+\clearpage   
+\section{Bibliografia}
+\label{sec:org7296298}
+\begin{enumerate}
+\item \label{org376bcb0}
+\label{sec:orgb6bc9f4}
+PRESSMAN, Roger S. Engenharia de software: Uma abordagem profissional. 7. ed. Porto Alegre: AMGH Editora, 2011.
+\item \label{orge0df9e4}
+\label{sec:org4375ff5}
+GNU Emacs. Disponível em:< \url{https://www.gnu.org/software/emacs/} >. Acesso em 20 outubro 2020.
+\item \label{org2d92571}
+\label{sec:org1d2e3c9}
+DISCORD. Disponível em:< \url{https://discord.com/} >. Acesso em 20 outubro 2020.
+\end{enumerate}
+\end{document}

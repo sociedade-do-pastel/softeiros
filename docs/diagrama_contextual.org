@@ -1,5 +1,6 @@
-#+TITLE: Diagrama de Contexto Avançado 
-#+begin_src plantuml :file diagramo_cont.png :exports results 
+#+TITLE: Diagrama de Contexto Avançado
+
+#+begin_src plantuml :file ../imgs/diagramo_cont.png :exports results 
   node "Dispositivo" {
 
 	  package "Front-end cliente" {
@@ -20,7 +21,7 @@
 		  [AdmEnter] ..> GestaoDados 
 	  }
   }
-					
+
   node "Servidor" {
 	  package "Back-end" {
 		  [MainServer] - SocketServer
@@ -36,13 +37,17 @@
 			  [relSala]
 			  }
 		  }
+		folder "usuarios" {
+			[relUsuarios]
+		      }
 	  }
+
   }
-									
+
   [MainServer] ..> Sal  :  Acessa
   [relSala] -> [relComputador] : Contém
 #+end_src
 
 #+RESULTS:
-[[file:diagramo_cont.png]]
+[[file:../imgs/diagramo_cont.png]]
 
