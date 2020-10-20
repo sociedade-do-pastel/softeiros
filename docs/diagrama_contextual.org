@@ -37,15 +37,17 @@
 			  [relSala]
 			  }
 		  }
+
+	database "Usuarios" as us {
 		folder "usuarios" {
 			[relUsuarios]
-		      }
-	  }
+		}
+						  }
+	}
 
   }
-
+  [MainServer] ..> us : Valida
   [MainServer] ..> Sal  :  Acessa
-  [relSala] -> [relComputador] : Contém
 #+end_src
 
 #+RESULTS:

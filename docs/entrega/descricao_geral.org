@@ -46,19 +46,30 @@ Centro Universitário FEI
   pensar nas seguintes possibilidades:
 
   1) Adquirir novas unidades de computadores, mesas e cadeiras
-     (cabos e instalação inclusos no cenário)
-  2) Construir um novo laboratório (cenário 1 implícito, mais caro)
+     (cabos e instalação inclusos no cenário).
+  2) Construir um novo laboratório (cenário 1 implícito, mais caro).
   3) Desenvolver um *sistema* para, ao menos, refrear a superlotação dos laboratórios
      a partir da realização de uma gestão propriamente dita, levando em conta
      o comportamento dos *usuários finais* (alunos).
   4) Limitar a entrada de usuários, impondo condições severas em relação ao
-     uso das máquinas e lugares disponíveis 
-     (não mais que *n* pessoas presentes ou uma máquina a cada duas pessoas são possíveis restrições)
+     uso das máquinas e lugares disponíveis
+     (não mais que *n* pessoas presentes ou uma máquina a cada duas pessoas são possíveis restrições).
 
   Deve-se lembrar, entretanto, que existem finitas soluções possíveis as quais
   englobam tanto curto, quanto longo prazo. Porém, o grupo, defronte ao
   potencial da opção quatro (4), decidiu implementar um sistema de software
-  capaz de realizar tal ação. 
+  capaz de realizar tal ação.
+
+  No caso, o AvailLable seria capaz de, então, informar aos alunos usuários dos
+  laboratórios de uso livre do Centro Universitário FEI, se estes encontram-se
+  disponíveis, com máquinas o suficiente e se estas possuem os programas
+  desejados. Muitos dos computadores de certos laboratórios, não
+  possuem o interpretador da linguagem Python, *Python3*, ferramenta essencial
+  para alunos do curso de Ciência da Computação, por exemplo. Além disso, um
+  mapa de cada laboratório seria mostrado e a administração do /database/ seria
+  feita pelos membros do *CGI*, sendo possível, então, atualizar as informações
+  caso um novo laboratório seja construído, novos programas adicionados ou
+  o horário de fechamento seja modificado.
      
 * Discussão
   Alinhado aos princípios da empresa como entrega de conhecimento de forma
@@ -153,8 +164,8 @@ Centro Universitário FEI
 \clearpage   
 * Bibliografia
 ****** <<pressman>>
-       PRESSMAN, Roger S. Engenharia de software: Uma abordagem profissional. 7. ed. Porto Alegre: AMGH Editora, 2011.
-****** <<emags>>
-       GNU Emacs. Disponível em:< https://www.gnu.org/software/emacs/ >. Acesso em 20 outubro 2020.
+       PRESSMAN, Roger S. *Engenharia de software:* Uma abordagem profissional. 7. ed. Porto Alegre: AMGH Editora, 2011.
 ****** <<discord>>
        DISCORD. Disponível em:< https://discord.com/ >. Acesso em 20 outubro 2020. 
+****** <<emags>>
+       GNU Emacs. Disponível em:< https://www.gnu.org/software/emacs/ >. Acesso em 20 outubro 2020.
