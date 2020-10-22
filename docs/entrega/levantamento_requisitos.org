@@ -3,7 +3,7 @@
 #+options: d:(not "LOGBOOK") date:nil e:t email:nil f:t inline:t num:t
 #+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
 #+options: timestamp:t title:t toc:t todo:t |:t
-#+title: Documento de Requisitos
+#+title: Levantamento de requisitos
 #+language: brazilian
 #+select_tags: export
 #+exclude_tags: noexport
@@ -18,17 +18,271 @@
 -Durante o planejamento, como fizeram a estimativa,o cronograma e a análise de risco?
 #+end_comment
 
-* Introdução 
+* O levantamento de requisitos
+  O método *XP* apresenta uma curiosa forma de definir todos os requisitos
+  para a estrutura geral do projeto. No caso, uma fase de coleta
+  de requisitos sempre ocorre durante toda etapa de planejamento num ciclo,
+  uma vez que, essencialmente, as histórias dos usuários definem o que será
+  (ou não, dependendo da opinião geral dos desenvolvedores) implementado.
+  Deve-se ressaltar que o termo ``requisito'', neste contexto, se refere
+  a toda característica do /software/ em realizar uma ação definida por,
+  ou um usuário, ou a empresa contratante (FEI) ou como restrição imposta
+  pelos elementos de /hardware/ e /software/ contidos no mini universo
+  em foco ([[sommer]]). Os usuários entrevistados, em sua maioria
+  alunos da FEI, são considerados /stakeholders/.
+
+  A coleta de requisitos ocorreu durante o período de um mês, a partir do dia
+  03/09, no qual foi criado o primeiro rascunho do questionário para o registro
+  em massa das opiniões dos alunos. Após sugestões do
+  professor, este questionário foi adaptado em uma escalai *Likert*,
+  a qual teve sua publicação realizada
+  na plataforma grátis para questionários /online/,
+  *Google forms*.
+
+** Estudo de viabilidade
+   De inicio, o estudo de viabilidade se mostrou simples, uma vez que,
+   com auxílio do professor durante videoaula, foi possível
+   compilar todas as respostas de forma eficiente.
+
+   As características apresentadas pelo /software/ não só não existem
+   no momento em nenhum dos ambientes da faculdade, como também são raras
+   entre os diversos outros centros universitários. De forma generalizada,
+   o direcionamento correto do fluxo de alunos por entre os laboratórios
+   do *CGI* apresentaria benefícios para todos os atores considerados.
+   Estes sendo:
+
+   - O aluno, vendo que o laboratório desejado possuí *x* programa em seus computadores,
+     se dirigirá para tal laboratório de forma direta, sem interrupções por
+     tentativa-e-erro ou checagens de listas.
+   - A *FEI*, em sua posição de provedora de serviços de forma ágil e dinâmica,
+     terá a oportunidade de ``vender'' este programa como parte de sua filosofia.
+   - A faculdade ainda deixará de aplicar a verba destinada à compra
+     de mais equipamentos, podendo direcioná-la para outras áreas.
+   - Um número menor de consultas pessoais com os membros do *CGI* tornaria o
+     sistema, como um todo, mais eficiente, uma vez que os funcionários ganham mais
+     tempo para se dedicar à tarefa que lhes foi dada por seus superiores.
+
+   Além do mais, o programa não apresenta dependências de
+   instalação consideradas ``absurdas'', todos os módulos relacionados ao projeto
+   já poderiam ser executados tanto nos computadores e sistema de monitores já
+   existente para a interface gráfica, quanto nos servidores que a faculdade
+   possui.
+
+   A faculdade já funciona sem o sistema, a mudança seria causada, então, pela
+   adoção do projeto como elemento para modificar o cotidiano de seus alunos.
+   
+** Elicitação e análise de requisitos
+   Como especificado anteriormente, o estilo de trabalho apresentado pelo *XP*,
+   permite que novos requisitos sejam adicionados à uma ``fila de prioridade''
+   durante todo o curso do projeto. Mesmo assim, para que hajam mais resultados
+   em um curto período, foi realizada, então a coleta também por meio da
+   *escala Likert* realizada através do *Google forms*, esta já mencionada ([[resumo]]).
+   Neste relatório será realizada a intercalação dos termos ``questionário'' e
+   ``escala Likert'', para maior conveniência. É pedido ao leitor que considere-os
+   como se referindo ao mesmo termo.
+
+   Pode-se afirmar, então, que foram aplicadas duas técnicas para análise de
+   requisitos, uma delas sendo a *análise por cenário*, onde foram definidos
+   requisitos à partir da divisão do cenário estudado em *atores*, *fluxo*
+   e *condição*, os dois últimos categorizados
+   em estados antes e depois da aplicação do software.
+   A segunda técnica seria a *entrevista*, diretamente com um
+   dos tipos de /stakeholders/ (alunos) e de forma *aberta*.
+      
+*** O que foi descoberto
+    A partir da análise de cenário, foi possível, então, determinar
+    os seguintes requisitos, dentre parênteses estão os atores
+    observados:
+    
+    1) Interface gráfica para os usuários comuns (alunos)
+    2) Interface gráfica para os superusuários (CGI)
+    3) Lógica para determinação de filtros (alunos e CGI)
+    4) Base de dados para guardar informações quanto aos filtros disponíveis (CGI)
+    5) Lógica para a modificação dos itens da base de dados (CGI)
+        
+*** Entrevista
+    Com base nas histórias de usuários e questionário realizado, foi possível,
+    ainda, especificar como seria o sistema de filtros realizado sobre o sistema
+    de busca na base de dados apresentada na análise de cenário. Foi
+    possível retirar-se os resultados à seguir:
+
+    1) Mostrar ao usuário se o laboratório
+       se encontra com todos ou a maioria de seus lugares tomados
+    2) Mostrar ao usuário o mapa da sala em foco e as posições de cada máquina
+    3) Filtrar as salas por /softwares/ disponíveis e andar em que se encontra
+    4) Interface gráfica deve ser visualmente agradável e intuitiva
+    5) /Software/ deve ser responsivo e não tomar muito tempo para realizar sua
+       lógica
+    6) O servidor deve se utilizar de um protocolo para poder realizar a comunicação
+       com o /front-end/
+    7) A base de dados deve ser rápida ao realizar suas buscas
+
+       #+ATTR_LATEX: :caption \caption{Três usuários deixaram considerações adicionais positivas.}
+       [[../../imgs/comentarios.png]]
+     
+       #+ATTR_LATEX: :width 0.7\textwidth     
+       #+ATTR_LATEX: :caption \caption{Os resultados obtidos da escala Likert, verde escuro indicando maior relevância.}
+       [[../../imgs/likert.png]]
+
+\clearpage         
+** Especificação de requisitos
+   Depois da fase de coleta em massa de requisitos ter terminado, estes
+   foram compilados juntamente aos determinados pela análise de cenário
+   e histórias de usuário. Restou então, simplesmente filtrar e
+   categorizar estes requisitos antes da etapa de validação.
+
+*** Requisitos de usuário
+    Devido ao desconhecimento quanto aos elementos técnicos de muitos
+    dos /stakeholders/ entrevistados, como pôde ser notado na lista anterior,
+    é possível notar que muitas das ideias repassadas têm uma ``área de cobertura''
+    muito extensa. Em sua maioria, os usuários desejavam:
+
+    - Um sistema rápido e responsivo
+    - Disponibilidade em inúmeras plataformas
+    - Interface visualmente chamativa e organizada
+    - Rapidez na questão de tempo de resposta
+    - Filtragem por /software/, andar e sala
+    - Mostrar quais computadores estão disponíveis no momento
+      
+*** Requisitos de sistema
+    Baseados nos requisito de usuário, a equipe teve a oportunidade,
+    então, de compilar os seguintes requisitos de sistema:
+**** Funcionais
+     - O usuário pode pesquisar numa lista de salas todos os /softwares/ disponíveis
+       em cada conjunto de computadores presentes nestas salas.
+     - A filtragem deverá ocorrer, primeiramente, como:
+       1) Salas de laboratório, por nome, este já especifica sua localização na
+	  faculdade, como andar e bloco
+       2) Programas disponíveis como Python, AutoCAD, LINDO, MatLab, etc.
+       3) Computadores não utilizados
+     - O usuário pode se reconectar ao sistema a qualquer hora que desejar
+     - O administrador, por inicio será considerado um usuário comum,
+       mas terá a oportunidade de inserir uma *senha* para acessar a
+       base de dados
+	 
+**** Não funcionais
+     - O servidor não deve tomar mais que um (1) minuto para responder o usuário,
+       isso inclui o tempo tomado pela base de dados para resolver as buscas
+     - O servidor deve receber o pedido do usuário em apenas um /chunk/, isto é,
+       em apenas um clique num botão de "enviar", o /front-end/ enviaria todos
+       os dados necessários
+     - O servidor deve tratar devidamente dos erros de entrada e responder o usuário
+       caso algum tenha ocorrido
+     - As interfaces devem impedir o usuário de inserir carácteres indevidos,
+       números a mais ou qualquer outro valor considerado inválido pelos desenvolvedores
+     - O /software/ deve estar presente tanto nas plataformas /Windows/ quanto
+       nas baseadas em GNU/Linux
+
+** Validação de requisitos
+   A maioria dos requisitos coletados são completamente válidos para
+   a implementação, talvez apenas impedidos pelas restrições de tempo impostas
+   pelo período de um semestre. As histórias de usuário, resultados de
+   questionário e requisitos de cenário os quais
+   foram dados como ``menos relevantes''
+   são:
+
+*** Mostrar ao usuário quais máquinas estão disponíveis
+    Devido à natureza assíncrona da comunicação cliente \rightarrow servidor,
+    árdua é a tarefa de introduzir a atualização em *tempo real* quanto
+    aos computadores que estão sendo utilizados. Além disso, /delays/
+    e congestionamentos já existentes na rede podem retornar ao usuário
+    informações antigas ou, simplesmente, erradas. Implementar
+    tal ação ficaria para o final do projeto se restar tempo disponível.
+    Além disso, o tempo de implementação que a equipe dá a este requisito
+    atravessa a barreira de uma semana.
+*** Disponibilidade multiplataforma
+    A dupla de desenvolvedores é, em sua totalidade, composta de usuários
+    de sistemas baseados em GNU/Linux e dispõe de tal para programar
+    seus projetos. O processo de /cross-compiling/ ficaria ao final do projeto,
+    visto que é um ato simples e de fácil execução. Um a dois dias seriam
+    requeridos da equipe para o /cross-compile/.
+
+** Os conflitos entre requisitos
+   Nada garante que o tempo de resposta de um servidor seja menor que
+   um segundo, mesmo que a complexidade algorítmica deste seja
+   O(1) e sendo executado no computador mais rápido já inventado.
+   No caso, /delays/, longos /ttl/ por conta dos dispositivos e
+   congestionamentos nos nós da rede podem tornar até mesmo impossível
+   a implementação de um sistema que conte com algo certo como
+   uma unidade de tempo constante. Contanto, tomar isso como *média*
+   é visto como justo quando indo de encontro aos requisitos
+   os quais determinam a agilidade da base de dados e lógica
+   do servidor.
+
+** Os outros requisitos
+   Provavelmente, dado ao nichamento realizado pelo projeto ao focar
+   em um ``pequeno universo'' na FEI, os /stakeholders/ entrevistados
+   não apresentaram ideias consideradas ``impossíveis'', requisitando dos
+   desenvolvedores características do sistema *visuais*, *agéis* e
+   *dinâmicas*, estes indo mais de encontro com as opiniões de outros
+   usuários, não causando conflitos com a exceção apresentada no item
+   anterior. Cada um dos requisitos determinados funcionais e não funcionais
+   tiveram uma medida em dias determinada, estes seriam, então,
+   adicionados ao cronograma,
+   ligados aos cartões *CRC* durante o decorrer do projeto e, logo
+   em seguida, adicionados ao *diagrama de componentes*. 
+
+* Como ocorre o planejamento
+  Facilitado pelo *org-mode* ([[project]]) citado em relatório anterior, a elaboração e
+  atualização do cronograma deu-se desde o início do projeto. Este, servindo
+  também como substituição da tabela *Kanban*, uma vez que os membros
+  da dupla já se apresentavam habituados com o sistema proporcionado pelo
+  *org-mode*. Foram ``copiados'', contanto, os três estados básicos de uma
+  tabela *Kanban*, além da *definição de ``feito''* (apresentada com a sigla DOD).
+
+  Cada seção do documento indica uma *tarefa* diferente, cada uma dessas
+  possuindo uma propriedade *SCHEDULE*, ou quando a equipe deseja começar
+  a trabalhar em tal tarefa e uma propriedade *DEADLINE*,esta sendo
+  a data prevista para se finalizar todas as sub-tarefas relacionadas àquela seção.
+
+  Os *pesos* determinados pela equipe para cada história de usuário definiram
+  a quantidade de dias que cada uma dessas tarefas tomaria.
+  O *org-mode* ainda disponibiliza a soma
+  de todos os dias definidos em cada uma das subseções. Deve-se notar, entretanto,
+  que a dupla pode trabalhar em diferentes tarefas em dias iguais. Muitas vezes,
+  a soma total de dias previstos, pode causar equívocos quanto à interpretação.
+
   
-* Requisitos de usuários
+  #+ATTR_LATEX: :caption \caption{O arquivo org para cronograma em seu modo de tabela.}
+  [[file:../../imgs/schedule_table.png]]
 
-* Arquitetura do sistema
+  #+ATTR_LATEX: :caption \caption{A estrutura de uma tarefa.}
+  [[../../imgs/schedule_struct.png]]
 
-* Requisitos do sistema
-  
-* Modelos do sistema
+** Análise de risco
+   Determinada após o conjunto de aulas dos dias 10/09 e 14/09, a técnica escolhida
+   para análise de risco foi a baseada na confecção e interpretação das matrizes *SWOT*,
+   na qual os integrantes da dupla determinam forças, fraquezas, oportunidades e
+   perigos em relação a relações com si mesmos, clientes ou oportunidade de negócios.
+   Os seguintes relacionamentos foram estudados
+   
+   1) Equipe → Equipe
+   2) Equipe → Cliente 
+   3) Equipe \rightarrow Oportunidade de negócio
 
+   A análise de risco propriamente dita se dá quando a dupla vê se há uma presença
+   ou não das notações em vermelho ao lado direito da matriz, o qual consiste
+   dos campos *fraquezas* e *perigos*. Toda reunião conta com uma curta discussão
+   quanto à possível mudança de estado da matriz. São, então, vistos todos os pontos
+   que as matrizes contém e, se necessário, essas são atualizadas.
+
+   No caso, as matrizes e os comentários dos desenvolvedores podem ser encontrados
+   no repositório do projeto no /website/ dedicado a /hosting/ de repositórios
+   com controle de versionamento, o *GitHub* ([[github]]). 
+
+   \clearpage
 * Referências
 ***** <<sommer>>
       SOMMERVILLE, Ian. *Engenharia de Software.* 9. ed. São Paulo. Pearson Prentice Hall, 2011.
-
+***** <<resumo>>
+      BELLINI, Leon Ferreira; SAMPAIO, Guilherme O. ANÁLISE de requisitos.2020. Disponível em:
+      https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/rascunho_rq.org.
+      Acesso em: 20 out. 2020. 
+***** <<project>>
+      JONES, Peter J. *Behind the code:* project planning. 2008.
+      Disponível em: https://devalot.com/articles/2008/07/project-planning .
+      Acesso em: 20 out. 2020.
+***** <<github>>
+      BELLINI, Leon Ferreira. Análise de riscos através das matrizes SWOT. 2020. Disponível em:
+      https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/analise_riscos.org.
+      Acesso em: 20 out. 2020. 
