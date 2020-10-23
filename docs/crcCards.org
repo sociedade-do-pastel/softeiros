@@ -1,0 +1,112 @@
+#+title: Cartões CRC
+#+options: toc:nil date:nil title:nil num:nil
+#+latex_header: \usepackage[paperheight=3in,paperwidth=5in,margin=0.05in]{geometry}
+#+latex_header: \usepackage{nopageno}
+
+* Classe: CliEnter (GUI)
+#+attr_latex: :environment longtable :align |p{2.5in}|p{2in}|
+|------------------------------------------+------------------|
+| *Responsabilidade*                       | *Colaboração*    |
+|------------------------------------------+------------------|
+| - Saber as salas de laboratório;         | - LogicaCliEnter |
+| - Saber as informações das salas;        |                  |
+| - Saber os softwares disponíveis;        |                  |
+| - Exibir as salas com suas respectivas   |                  |
+| informações;                             |                  |
+| - Aplicar filtros na exibição das salas. |                  |
+|                                          |                  |
+|                                          |                  |
+|                                          |                  |
+|                                          |                  |
+|                                          |                  |
+|------------------------------------------+------------------|
+
+* Classe: AdmEnter (GUI)
+#+attr_latex: :environment longtable :align |p{2.5in}|p{2in}|
+|-------------------------------------+------------------|
+| *Responsabilidade*                  | *Colaboração*    |
+|-------------------------------------+------------------|
+| - Saber as salas de laboratório;    | - LogicaAdmEnter |
+| - Saber as informações das salas;   |                  |
+| - Saber os softwares disponíveis;   |                  |
+| - Adicionar/remover salas;          |                  |
+| - Adicionar/remover softwares;      |                  |
+| - Modificar informações de salas já |                  |
+| existentes;                         |                  |
+|                                     |                  |
+|                                     |                  |
+|                                     |                  |
+|                                     |                  |
+|-------------------------------------+------------------|
+
+* Classe: LogicaCliEnter
+#+attr_latex: :environment longtable :align |p{2.5in}|p{2in}|
+|--------------------------------------+---------------|
+| *Responsabilidade*                   | *Colaboração* |
+|--------------------------------------+---------------|
+| - Traduzir elementos da interface    | - CliEnter    |
+| CliEnter para strings interpretáveis | - MainServer  |
+| pelo servidor;                       |               |
+| - Atualizar o CliEnter quando houver |               |
+| alterações na database.              |               |
+|                                      |               |
+|                                      |               |
+|                                      |               |
+|                                      |               |
+|                                      |               |
+|                                      |               |
+|--------------------------------------+---------------|
+
+* Classe: LogicaAdmEnter
+#+attr_latex: :environment longtable :align |p{2.5in}|p{2in}|
+|----------------------------------------+---------------|
+| *Responsabilidade*                     | *Colaboração* |
+|----------------------------------------+---------------|
+| - Traduzir elementos da interface      | - AdmEnter    |
+| AdmEnter para strings interpretáveis   | - MainServer  |
+| pelo servidor;                         |               |
+| - Atualizar o AdmEnter quando          |               |
+| houver alterações na database;         |               |
+| - Garantir controle de acesso especial |               |
+| à database.                            |               |
+|                                        |               |
+|                                        |               |
+|                                        |               |
+|                                        |               |
+|----------------------------------------+---------------|
+
+* Classe: Server
+#+attr_latex: :environment longtable :align |p{2.5in}|p{2in}|
+|---------------------------------------+------------------|
+| *Responsabilidade*                    | *Colaboração*    |
+|---------------------------------------+------------------|
+| - Fazer parsing de strings recebidas; | - LogicaCliEnter |
+| - Transformar as string recebidas em  | - LogicaAdmEnter |
+| queries;                              | - SalasDB        |
+| - Responder requests com as tuplas do |                  |
+| database;                             |                  |
+| - Fazer a autenticação do usuário     |                  |
+| administrador;                        |                  |
+| - Garantir a segurança dos dados.     |                  |
+|                                       |                  |
+|                                       |                  |
+|                                       |                  |
+|---------------------------------------+------------------|
+
+* Classe: SalasDB
+#+attr_latex: :environment longtable :align |p{2.5in}|p{2in}|
+|-----------------------------------+---------------|
+| *Responsabilidade*                | *Colaboração* |
+|-----------------------------------+---------------|
+| - Possuir relações dos softwares; | - Server      |
+| - Possuir relações das salas;     |               |
+| - Adicionar relações;             |               |
+| - Remover relações;               |               |
+| - Consultar relações.             |               |
+|                                   |               |
+|                                   |               |
+|                                   |               |
+|                                   |               |
+|                                   |               |
+|                                   |               |
+|-----------------------------------+---------------|
