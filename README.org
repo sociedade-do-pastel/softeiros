@@ -53,5 +53,15 @@
    todos os documentos relacionados à organização serão estruturados como 
    documentos *org*. 
 
-** O próximo passo
-   Tabela Kanban (?)
+* Material
+Seção destinada a agrupar as informações relacionadas às etapas do projeto.
+|---------+-------------------------------------------|
+| Entrega | Material                                  |
+|---------+-------------------------------------------|
+| 1ª      | [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/entrega/descricao_geral.org][Descrição Geral]]                           |
+| 2ª      | [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/entrega/levantamento_requisitos.org][Levantamento de Requisitos]], [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/analise_riscos.org][Matrizes SWOT]] |
+| 3ª      |                                           |
+| 4º      |                                           |
+| 5º      |                                           |
+|---------+-------------------------------------------|
+
