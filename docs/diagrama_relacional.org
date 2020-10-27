@@ -7,7 +7,9 @@
 	  ,* **nome_sala** : TEXT <<PK>>
 	  --
 	  hora_fechamento : TEXT 
-	  ip_sala : TEXT 
+	  ip_sala : TEXT
+	  qtd_lugares_disponiveis: INTEGER
+	  qtd_maxima_lugares: INTEGER
   }
 
   entity computador {
