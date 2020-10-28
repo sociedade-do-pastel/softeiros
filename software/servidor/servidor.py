@@ -9,8 +9,6 @@ class Servidor:
         self.isTCP = True
         self.isIPV4 = True
         self.run = True
-        self.UserTableName = "Usuarios"
-        self.RoomsTableName = "Salinhas"
         self.DefaultUser = "Jooj"
         self.MaximumClients = 2
 
@@ -34,8 +32,10 @@ class Servidor:
             # our main loop should be placed here
 
             # connectDB will create the database if it doesn't exist
-            self.connectDB(self.UserTableName, self.RoomsTableName)
-            
+            if self.checkDB() != 0:
+                print("Something is wrong with the database, please check it.")
+                sys.exit()
+                
             sock.bind(self.SocketTuple)
             sock.listen(self.MaximumClients)
             # mainLoop receives a proper socket object AND an address tuple
@@ -43,11 +43,9 @@ class Servidor:
             # should just change the main loop and how a branching occurs 
             self.mainLoop(sock.accept())
             
-    def connectDB(self, *args):
-        for tables_to_check in args:
-            if not dh.checkTables(tables_to_check):
-                dh.createTable(tables_to_check)
-            
+    def checkDB(self):
+        return dh.checkAllTables()
+        
     def mainLoop(self, SocketObject):
         ConsSocketCommunication = SocketObject[0]
         # Socket object index 0 gets the socket itself,
@@ -68,7 +66,7 @@ class Servidor:
                
         def commonUserProcedure(self, socketObject):
             # first step
-            socketObject.sendall(None) # first we send all of our software list
+            socketObject.sendall(dh.getAllSoftware()) # first we send all of our software list
             # second step
             socketObject.recv(1024)    # then we receive a query about available softwares and seats
             socketObject.sendall(None) # answer it with every room that is available

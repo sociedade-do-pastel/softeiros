@@ -9,18 +9,18 @@
 	  hora_fechamento : TEXT 
 	  ip_sala : TEXT
 	  qtd_lugares_disponiveis: INTEGER
-	  qtd_maxima_lugares: INTEGER
   }
 
   entity computador {
 	  ,* **id_computador** : TEXT <<PK>>
 	  --
 	  ,* **nome_sala** : TEXT <<FK>>
-
+	  pos_x : INTEGER
+	  pos_y : INTEGER
   }
 
   entity softwares_disp {
-	  ,* **nome_software** : TEXT <<PK>>
+	  ,* **nome_software** : TEXT 
 	  --
 	  ,* id_computador : TEXT <<FK>>
   }
