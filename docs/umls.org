@@ -1,0 +1,65 @@
+#+title: Diagrama de classes
+
+#+begin_src plantuml :file "./cliEnterClassDiagram.png" :results file
+  skinparam classAttributeIconSize 0
+  class CliEnter {
+
+  }
+
+  class RoomWidget {
+        -qtPCs : int
+        -qtMaxPCs : int
+        -pix : QPixmap
+        -roomName : QString
+        -closeTime : QString
+        -icon QLabel*
+        -infoArea QVBoxLayout*
+        -mainArea QHBoxLayout*
+        -setIcon() : void
+  }
+
+  CliEnter "1..1" o-- "0..*" RoomWidget : possui
+#+end_src
+
+#+RESULTS:
+[[file:~/cloneiro/softeiros/docs/cliEnterClassDiagram.png]]
+
+#+begin_src plantuml :file "./admEnterClassDiagram.png" :results file
+  skinparam classAttributeIconSize 0
+  skinparam classFontSize 20
+  skinparam classFontName Hack
+  scale 1.5
+  class AdmEnter {
+        +AdmEnter(QWidget *parent = nullptr)
+        ~AdmEnter()
+        -cache : QStringList
+        -selected_table : QString
+        -clicked_item : QListWidgetItem*
+        -Ui::AdmEnter *ui
+        -on_table_combo_currentTextChanged(const QString &arg1) : void
+        -on_selected_table_list_itemClicked(QListWidgetItem *item) : void
+        -on_edit_button_clicked() : void
+        -on_add_button_clicked() : void
+        -on_room_computer_edit_button_clicked() : void
+        -on_delete_button_clicked() : void
+        -on_software_confirm_button_clicked() : void
+        -on_room_computer_add_button_clicked() : void
+        -on_room_computer_delete_button_clicked() : void
+        -on_room_computer_confirm_button_clicked() : void
+        -on_computer_current_software_delete_button_clicked() : void
+        -on_computer_confirm_button_clicked() : void
+  }
+
+  class LoginDialog {
+      +LoginDialog(QWidget *parent = nullptr);
+      ~LoginDialog();
+      -void on_login_button_clicked();
+      -void on_cancel_button_clicked();
+      +Ui::LoginDialog *ui;
+  }
+
+  AdmEnter "1..1" *-- "1..1" LoginDialog : possui
+#+end_src
+
+#+RESULTS:
+[[file:./admEnterClassDiagram.png]]

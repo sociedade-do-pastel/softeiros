@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QStringList>
 #include <QListWidget>
+#include "logindialog.h"
 
 namespace Ui {
 class AdmEnter;
@@ -26,9 +27,30 @@ private slots:
 
     void on_add_button_clicked();
 
-    void on_sala_computer_add_clicked();
+    void on_room_computer_edit_button_clicked();
+
+    void on_delete_button_clicked();
+
+    void on_software_confirm_button_clicked();
+
+    void on_room_computer_add_button_clicked();
+
+    void on_room_computer_delete_button_clicked();
+
+    void on_room_computer_confirm_button_clicked();
+
+    void on_computer_current_software_delete_button_clicked();
+
+    void on_computer_confirm_button_clicked();
+
+    void on_actionSair_triggered();
+
+    void autentication_handler(int result);
 
 private:
+    void autenticate();
+
+    LoginDialog login;
     QStringList cache;
     QString selected_table;
     QListWidgetItem *clicked_item;

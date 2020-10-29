@@ -1,6 +1,5 @@
 #include "admenter.h"
 #include "ui_admenter.h"
-#include <iostream>
 
 AdmEnter::AdmEnter(QWidget *parent) :
     QMainWindow(parent),
@@ -8,14 +7,17 @@ AdmEnter::AdmEnter(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    ui->software_add->hide();
-    ui->sala_manipulate->hide();
+    ui->software_manipulate->hide();
+    ui->room_manipulate->hide();
     ui->computer_manipulate->hide();
 
     this->cache << "teste" << "de" << "lista" << "jaaj";
     ui->selected_table_list->addItems(cache);
 
     selected_table = ui->table_combo->currentText();
+
+    connect(&login, &QDialog::finished, this, &AdmEnter::autentication_handler);
+    autenticate();
 }
 
 AdmEnter::~AdmEnter()
@@ -30,8 +32,8 @@ void AdmEnter::on_table_combo_currentTextChanged(const QString &arg1)
     ui->delete_button->setEnabled(false);
     ui->edit_button->setEnabled(false);
 
-    ui->software_add->hide();
-    ui->sala_manipulate->hide();
+    ui->software_manipulate->hide();
+    ui->room_manipulate->hide();
     ui->computer_manipulate->hide();
 }
 
@@ -48,32 +50,83 @@ void AdmEnter::on_selected_table_list_itemClicked(QListWidgetItem *item)
 
 void AdmEnter::on_edit_button_clicked()
 {
-    ui->software_add->hide();
-    ui->sala_manipulate->show();
+    ui->software_manipulate->hide();
+    ui->room_manipulate->show();
     ui->computer_manipulate->hide();
 
-    ui->sala_name->setText(clicked_item->text());
+    ui->room_name_input->setText(clicked_item->text());
 }
 
 void AdmEnter::on_add_button_clicked()
 {
     if(selected_table == "Softwares")
     {
-        ui->software_add->show();
-        ui->sala_manipulate->hide();
+        ui->software_manipulate->show();
+        ui->room_manipulate->hide();
         ui->computer_manipulate->hide();
     }
     else
     {
-        ui->software_add->hide();
-        ui->sala_manipulate->show();
+        ui->software_manipulate->hide();
+        ui->room_manipulate->show();
         ui->computer_manipulate->hide();
     }
+}
+
+void AdmEnter::on_room_computer_edit_button_clicked()
+{
+    ui->computer_manipulate->show();
+}
+
+void AdmEnter::on_delete_button_clicked()
+{
 
 }
 
-void AdmEnter::on_sala_computer_add_clicked()
+void AdmEnter::on_software_confirm_button_clicked()
 {
-    ui->computer_manipulate->show();
 
+}
+
+void AdmEnter::on_room_computer_add_button_clicked()
+{
+
+}
+
+void AdmEnter::on_room_computer_delete_button_clicked()
+{
+
+}
+
+void AdmEnter::on_room_computer_confirm_button_clicked()
+{
+
+}
+
+void AdmEnter::on_computer_current_software_delete_button_clicked()
+{
+
+}
+
+void AdmEnter::on_computer_confirm_button_clicked()
+{
+
+}
+
+void AdmEnter::autenticate(){
+   login.open();
+
+}
+
+void AdmEnter::autentication_handler(int result){
+    if(result)
+        setEnabled(true);
+    else
+        close();
+
+}
+
+void AdmEnter::on_actionSair_triggered()
+{
+    autenticate();
 }
