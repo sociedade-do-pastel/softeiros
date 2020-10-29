@@ -22,12 +22,8 @@ def createConnection(user="postgres"):
                             port = DATABASE_PORT,
                             database = DATABASE_NAME)
 def checkTables(table):
-    with createConnection() as con:
-        with con.cursor() as cursor:
-            cursor.execute("SELECT EXISTS(SELECT * from information_schema.tables WHERE table_name=%s)",
-                           (table, ))
-            wasFound = cursor.fetchone()[0]
-            return wasFound
+    QUERY_TO_MAKE = "SELECT EXISTS(SELECT * from information_schema.tables WHERE table_name=%s)"
+    return genericGetQuery(QUERY_TO_MAKE, table)[0][0]
 
 def checkAllTables():
     with createConnection() as con:
@@ -45,26 +41,79 @@ def checkAllTables():
             con.commit()
         return 0
 
-def getAllSoftware(*args):
+def getAllSoftware():
+    QUERY_TO_MAKE = "SELECT DISTINCT ON (1) nome_software FROM public.softwares_disp"
+    return [soft[0] for soft in genericGetQuery(QUERY_TO_MAKE, None)]
+   
+    # now I'll have to return a json 
+
+def genericDestructiveQuery(QUERY_TO_MAKE, args):
     with createConnection() as con:
         with con.cursor() as cursor:
-            # all software available should be returned here, no duplicates
-            cursor.execute("SELECT DISTINCT ON (1) nome_software FROM public.softwares_disp")
-            software_list = []
-            for soft in cursor.fetchall():
-                software_list.append(soft[0])
-            # now I'll have to return a json 
-            
-def criarSala(*args):
-    QUERY_TO_MAKE = "INSERT INTO public.sala (nome_sala, hora_fechamento, ip_sala, qtd_lugares_disp) VALUES (%s, %s, %s, %s)"
-    with createConnection() as con:
-        with con.cursor() as cursor:
-            print(args)
             try:
-                cursor.execute(QUERY_TO_MAKE, args)
+                cursor.execute(QUERY_TO_MAKE, tuple(args))
+                con.commit()
             except psycopg2.Error as err:
                 print(err)
+
+def genericGetQuery(QUERY_TO_MAKE, args):
+    with createConnection() as con:
+        with con.cursor() as cursor:
+            try:
+                cursor.execute(QUERY_TO_MAKE, tuple(args))
+                return cursor.fetchall()
+            except psycopg2.Error as err:
+                print(err)
+
+        
+def createSala(args):
+    QUERY_TO_MAKE = '''INSERT INTO public.sala
+                       (nome_sala, hora_fechamento, ip_sala, qtd_lugares_disp)
+                       VALUES (%s, %s, %s, %s)'''
+    genericDestructiveQuery(QUERY_TO_MAKE, args)
+
                
+def removeSala(nome_sala):
+    QUERY_TO_MAKE = '''DELETE
+                       FROM public.sala
+                       WHERE nome_sala=%s'''
+    genericDestructiveQuery(QUERY_TO_MAKE, nome_sala)
 
 
+def createComputer(args):
+    QUERY_TO_MAKE = '''INSERT INTO public.computador
+                       (nome_sala, pos_x, pos_y)
+                       VALUES
+                       (%s, %s, %s)'''
+    genericDestructiveQuery(QUERY_TO_MAKE, args)
+
+def createSoftware(args):
+    QUERY_TO_MAKE = '''INSERT INTO public.softwares_disp
+                       (nome_software, id_computador)
+                       VALUES
+                       (%s, %s)'''
+    genericDestructiveQuery(QUERY_TO_MAKE, args)
+
+def editSala(args):
+
+    QUERY_TO_MAKE = '''UPDATE public.sala SET
+                       hora_fechamento=COALESCE(%s, hora_fechamento),
+                       ip_sala=COALESCE(%s, ip_sala),
+                       qtd_lugares_disp=COALESCE(%s, qtd_lugares_disp)
+                       WHERE nome_sala=%s
+                   '''
+
+    genericDestructiveQuery(QUERY_TO_MAKE, args)
+    
+def removeComputer(args):
+    QUERY_TO_MAKE = '''DELETE
+                       FROM public.computador
+                       WHERE id_computador=%s'''
+    genericDestructiveQuery(QUERY_TO_MAKE, args)
+    
+def removeSoftware(args):
+    QUERY_TO_MAKE = '''DELETE
+                       FROM public.softwares_disp
+                       WHERE (id_computador, nome_software) = (%s, %s)'''
+    genericDestructiveQuery(QUERY_TO_MAKE, args)
     
