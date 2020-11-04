@@ -1,7 +1,12 @@
 import socket as soos
 import databaseHandler as dh
+from datetime import datetime
 import sys
 import json
+MAPPED_QUERIES = {
+    "userGeneralQuery": dh.userGeneralQuery,
+    None : lambda: json.encode({"error":1}),
+}
 
 class Servidor:
     def __init__(self, port=8080, DA=""):
@@ -55,7 +60,7 @@ class Servidor:
         # or a common user
         Control = self.parseString(ConsSocketCommunication.recv(1024).decode("UTF-8"))
         if Control and Control.get("usuario") == self.DefaultUser:
-            self.commonUserProcedure(ConsSocketCommunication)
+            self.commonUserProcedure(ConsSocketCommunication, Control)
         elif Control.get("senha") is not None:
             self.admProcedure(ConsSocketCommunication, Control)
         else:
@@ -64,12 +69,22 @@ class Servidor:
             so we're answering with this message! 
             '''.encode("UTF-8"))
                
-        def commonUserProcedure(self, socketObject):
-            # first step
-            socketObject.sendall(dh.getAllSoftware()) # first we send all of our software list
-            # second step
-            socketObject.recv(1024)    # then we receive a query about available softwares and seats
-            socketObject.sendall(None) # answer it with every room that is available
-            # comm is ended (probably from their side)
-        def admProcedure(self, socketObject):
-            pass 
+    def commonUserProcedure(self, socketObject, Control):
+        # first we send all of our software list
+        socketObject.sendall(self.JsonFyAndConvertToString(Control))
+        
+    def admProcedure(self, socketObject, Control):
+        pass
+    
+    def JsonFyAndConvertToString(self, control):
+        dictionary_to_send = {}
+        for lista_salas in MAPPED_QUERIES.get(control.get("function", None))(1):
+            dictionary_to_send[lista_salas[0]] = {"hora_fechamento": lista_salas[1],
+                                                  "lista_computadores": {}}
+
+        for lista_computadores in MAPPED_QUERIES.get(control.get("function", None))(2):
+            dictionary_to_send[lista_computadores[0]]["lista_computadores"][lista_computadores[1]] = {
+            "pos_x":lista_computadores[2],
+            "pos_y":lista_computadores[3]}
+            
+        return json.dumps(dictionary_to_send).encode("UTF-8")

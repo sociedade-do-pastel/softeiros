@@ -43,7 +43,7 @@ def checkAllTables():
 
 def getAllSoftware():
     QUERY_TO_MAKE = "SELECT DISTINCT ON (1) nome_software FROM public.softwares_disp"
-    return [soft[0] for soft in genericGetQuery(QUERY_TO_MAKE, None)]
+    return [soft[0] for soft in genericGetQuery(QUERY_TO_MAKE, ())]
    
     # now I'll have to return a json 
 
@@ -55,7 +55,6 @@ def genericDestructiveQuery(QUERY_TO_MAKE, args):
                 con.commit()
             except psycopg2.Error as err:
                 print(err)
-
 def genericGetQuery(QUERY_TO_MAKE, args):
     with createConnection() as con:
         with con.cursor() as cursor:
@@ -68,8 +67,8 @@ def genericGetQuery(QUERY_TO_MAKE, args):
         
 def createSala(args):
     QUERY_TO_MAKE = '''INSERT INTO public.sala
-                       (nome_sala, hora_fechamento, ip_sala, qtd_lugares_disp)
-                       VALUES (%s, %s, %s, %s)'''
+                       (nome_sala, hora_fechamento, ip_sala)
+                       VALUES (%s, %s, %s)'''
     genericDestructiveQuery(QUERY_TO_MAKE, args)
 
                
@@ -99,7 +98,6 @@ def editSala(args):
     QUERY_TO_MAKE = '''UPDATE public.sala SET
                        hora_fechamento=COALESCE(%s, hora_fechamento),
                        ip_sala=COALESCE(%s, ip_sala),
-                       qtd_lugares_disp=COALESCE(%s, qtd_lugares_disp)
                        WHERE nome_sala=%s
                    '''
 
@@ -117,3 +115,13 @@ def removeSoftware(args):
                        WHERE (id_computador, nome_software) = (%s, %s)'''
     genericDestructiveQuery(QUERY_TO_MAKE, args)
     
+def userGeneralQuery(args):
+    if args == 1:
+        QUERY_TO_MAKE = '''SELECT sl.nome_sala, to_char(hora_fechamento, 'HH24:MI')
+        FROM public.sala AS sl '''
+    elif args == 2:
+        QUERY_TO_MAKE = '''SELECT nome_sala, comp.id_computador, pos_x, pos_y
+        FROM public.sala AS sl
+        JOIN public.computador AS comp USING(nome_sala)'''
+    return genericGetQuery(QUERY_TO_MAKE, ())
+

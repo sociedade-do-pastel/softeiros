@@ -3,8 +3,11 @@ CREATE TABLE IF NOT EXISTS public.computador(
        nome_sala VARCHAR(4) REFERENCES sala(nome_sala) ON DELETE CASCADE,
        pos_x INT,
        pos_y INT,
+       em_uso BOOL DEFAULT false,
        primary key (id_computador)
  );
+
+
 
 
 
