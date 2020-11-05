@@ -19,7 +19,6 @@ def getAllInput(iterations):
     return argList
 
 dic = {
-    1 : dh.getAllSoftware,
     2 : lambda:dh.createSala(getAllInput(3)),
     3 : lambda:dh.removeSala(getAllInput(1)),
     4 : lambda:dh.editSala(getAllInput(3)),
@@ -28,11 +27,13 @@ dic = {
     7 : lambda:dh.createSoftware(getAllInput(2)),
     8 : lambda:dh.removeSoftware(getAllInput(2)),
     9 : dh.checkAllTables,
-    10 : sys.exit,
+    10: lambda:dh.createUser(getAllInput(2)),
+    11: lambda:dh.removeUser(getAllInput(1)),
+    12: lambda:dh.checkUser(getAllInput(2)),
+    13: sys.exit,
 }
 def main():
     escolha = int(input('''Operacao desejada
-                       1 - Pegar lista de softwares
                        === SALA == 
                        2 - Criar nova sala
                        3 - Remover Sala
@@ -44,7 +45,11 @@ def main():
                        7 - Adicionar software 
                        8 - Remover software
                        == Checking ==
-                       9 - Checar se tabelas existem e criar\n'''))
+                       9 - Checar se tabelas existem e criar
+                       == Usuario ==
+                       10 - Criar usuario
+                       11 - Remover usuario
+                       12 - Checar usuario\n'''))
     
     print(dic.get(escolha, 10)())
 main()
