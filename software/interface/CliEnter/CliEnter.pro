@@ -10,15 +10,21 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    clienter.cpp
+    clienter.cpp \
+    roomwidget.cpp
 
 HEADERS += \
-    clienter.h
+    clienter.h \
+    roomwidget.h
 
 FORMS += \
-    clienter.ui
+    clienter.ui \
+    roomwidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    images.qrc

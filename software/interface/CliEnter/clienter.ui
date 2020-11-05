@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1066</width>
-    <height>605</height>
+    <width>1181</width>
+    <height>606</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -47,7 +47,7 @@
           </property>
           <layout class="QHBoxLayout" name="horizontalLayout" stretch="1,1">
            <item>
-            <widget class="QSpinBox" name="qtDispFilter">
+            <widget class="QSpinBox" name="computer_qt_disp_input">
              <property name="minimum">
               <number>1</number>
              </property>
@@ -57,7 +57,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="clearQt">
+            <widget class="QPushButton" name="computer_qt_clear_button">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Maximum" vsizetype="Minimum">
                <horstretch>0</horstretch>
@@ -128,7 +128,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton">
+              <widget class="QPushButton" name="software_list_clear_button">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                  <horstretch>0</horstretch>
@@ -147,7 +147,7 @@
             </layout>
            </item>
            <item>
-            <widget class="QListWidget" name="softwareArea"/>
+            <widget class="QListWidget" name="software_list"/>
            </item>
           </layout>
          </widget>
@@ -157,20 +157,55 @@
       <widget class="QGroupBox" name="groupBox_3">
        <property name="minimumSize">
         <size>
-         <width>300</width>
+         <width>310</width>
          <height>0</height>
+        </size>
+       </property>
+       <property name="maximumSize">
+        <size>
+         <width>310</width>
+         <height>16777215</height>
         </size>
        </property>
        <property name="title">
         <string>Salas</string>
        </property>
-       <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0">
+       <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QListWidget" name="salasArea"/>
+         <widget class="QScrollArea" name="room_list">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="widgetResizable">
+           <bool>true</bool>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignHCenter|Qt::AlignTop</set>
+          </property>
+          <widget class="QWidget" name="salasAreaContents">
+           <property name="geometry">
+            <rect>
+             <x>0</x>
+             <y>0</y>
+             <width>290</width>
+             <height>16</height>
+            </rect>
+           </property>
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+          </widget>
+         </widget>
         </item>
        </layout>
       </widget>
-      <widget class="QGroupBox" name="groupBox_4">
+      <widget class="QGroupBox" name="room_map_group">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
          <horstretch>1</horstretch>
@@ -186,6 +221,99 @@
        <property name="title">
         <string>Mapa da Sala</string>
        </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QGroupBox" name="computer_area">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+            <horstretch>0</horstretch>
+            <verstretch>2</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_4">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Preferred" vsizetype="Minimum">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="title">
+           <string/>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Legendas</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="green_pc_legend">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>disponível</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="red_pc_legend">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>ocupado</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
       </widget>
      </widget>
     </item>
@@ -196,12 +324,24 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1066</width>
+     <width>1181</width>
      <height>32</height>
     </rect>
    </property>
   </widget>
+  <action name="actionLogin">
+   <property name="text">
+    <string>Login</string>
+   </property>
+  </action>
  </widget>
+ <tabstops>
+  <tabstop>computer_qt_disp_input</tabstop>
+  <tabstop>computer_qt_clear_button</tabstop>
+  <tabstop>software_list_clear_button</tabstop>
+  <tabstop>software_list</tabstop>
+  <tabstop>room_list</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

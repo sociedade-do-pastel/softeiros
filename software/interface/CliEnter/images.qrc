@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>imgs/pcVermelho.png</file>
+        <file>imgs/pcVerde.png</file>
+        <file>imgs/pcAmarelo.png</file>
+        <file>imgs/pcMapVermelho.png</file>
+        <file>imgs/pcMapVerde.png</file>
+    </qresource>
+</RCC>
