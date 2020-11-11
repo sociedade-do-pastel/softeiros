@@ -143,6 +143,7 @@ def userGeneralQuery(args):
     '''General query which is asked by your average user.
 args argument defines what table to return so the server can
 produce a proper json file'''
+
     if args == 1:
         QUERY_TO_MAKE = '''SELECT sl.nome_sala, to_char(hora_fechamento, 'HH24:MI')
         FROM public.sala AS sl '''
@@ -155,6 +156,6 @@ produce a proper json file'''
         FROM public.sala AS sl
         JOIN public.computador AS comp USING(nome_sala)
         JOIN public.softwares_disp AS soft USING(id_computador)'''
-
-        return genericGetQuery(QUERY_TO_MAKE, ())
+        
+    return genericGetQuery(QUERY_TO_MAKE, ())
 
