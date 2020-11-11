@@ -2,27 +2,48 @@
 
 #+begin_src plantuml :file "./cliEnterClassDiagram.png" :results file
   skinparam classAttributeIconSize 0
+  skinparam classFontSize 20
+  skinparam classFontName Hack
+  scale 1.5
   class CliEnter {
-
+        +CliEnter(QWidget *parent = nullptr)
+        ~CliEnter()
+        -softwareAreaCheckActions(QListWidgetItem *item) : void
+        -roomClicked(RoomWidget *r) : void
+        -on_software_list_clear_button_clicked() : void
+        -on_computer_qt_clear_button_clicked() : void
+        -setSoftwareListProperties() : void
+        -setRoomList() : void
+        -setRoomMap() : void
+        -ui : Ui::cliEnter*
+        -software_items_list : std::vector<QListWidgetItem*>
+        -room_widgets_list : std::vector<RoomWidget*>
+        -room_list : QVBoxLayout*
+        -selected_room : RoomWidget*
+        -computer_grid : QGridLayout*
   }
 
   class RoomWidget {
-        -qtPCs : int
-        -qtMaxPCs : int
-        -pix : QPixmap
-        -roomName : QString
-        -closeTime : QString
-        -icon QLabel*
-        -infoArea QVBoxLayout*
-        -mainArea QHBoxLayout*
-        -setIcon() : void
+        mouseReleased(RoomWidget *r) : void
+        +RoomWidget(QString name, QString close_Time, int qts, int qt_max, QWidget *parent = nullptr)
+        ~RoomWidget()
+        +getRoom_name() : QString
+        #mouseReleaseEvent ( QMouseEvent * event ) : void
+        -updateLabels() : void
+        -setIcon() : void 
+        -ui : Ui::RoomWidget*
+        -icon_image : QPixmap
+        -room_name : QString
+        -close_time : QString
+        -qt_pc : int
+        -qt_max_pc : int
   }
 
   CliEnter "1..1" o-- "0..*" RoomWidget : possui
 #+end_src
 
 #+RESULTS:
-[[file:~/cloneiro/softeiros/docs/cliEnterClassDiagram.png]]
+[[file:./cliEnterClassDiagram.png]]
 
 #+begin_src plantuml :file "./admEnterClassDiagram.png" :results file
   skinparam classAttributeIconSize 0
