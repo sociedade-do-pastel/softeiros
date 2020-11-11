@@ -26,9 +26,9 @@ MAPPED_QUERIES = {
     "createSoftware": dh.createSoftware,
     "removeSoftware": dh.removeSoftware,
     # check queries
-    "salista": None,
-    "computerList": None,
-    "softwareList": None,
+    "salista": dh.getSalas,
+    "computerList": dh.getComputer,
+    "softwareList": dh.getSoftwares,
 }
 
 class Servidor:

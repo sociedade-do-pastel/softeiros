@@ -159,3 +159,25 @@ produce a proper json file'''
         
     return genericGetQuery(QUERY_TO_MAKE, ())
 
+def salista():
+    QUERY_TO_MAKE = '''SELECT sl.nome_sala
+                       FROM public.sala AS sl'''
+    return genericGetQuery(QUERY_TO_MAKE, ())
+
+
+def softwareList():
+    QUERY_TO_MAKE = '''SELECT DISTINCT ON (1) nome_software
+    FROM public.softwares_disp'''
+    return genericGetQuery(QUERY_TO_MAKE, ())
+
+def computerList():
+    QUERY_TO_MAKE = '''SELECT id_computador, nome_sala
+    FROM computador'''
+    return genericGetQuery(QUERY_TO_MAKE, ())
+
+def expungeSoftware(args):
+    QUERY_TO_MAKE = '''DELETE FROM public.softwares_disp
+    WHERE nome_software=%s'''
+    return genericGetQuery(QUERY_TO_MAKE, args)
+    
+

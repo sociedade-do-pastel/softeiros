@@ -31,7 +31,12 @@ dic = {
     11: lambda:dh.removeUser(getAllInput(1)),
     12: lambda:dh.checkUser(getAllInput(2)),
     13: sys.exit,
+    14: dh.salista,
+    15: dh.softwareList,
+    16: dh.computerList,
+    17: lambda: dh.expungeSoftware(getAllInput(1)),
 }
+
 def main():
     escolha = int(input('''Operacao desejada
                        === SALA == 
@@ -49,7 +54,15 @@ def main():
                        == Usuario ==
                        10 - Criar usuario
                        11 - Remover usuario
-                       12 - Checar usuario\n'''))
+                       12 - Checar usuario
+                       == Extra ==
+                       13 - SAIR
+                       == Checagem ==
+                       14 - salista (lista salas)
+                       15 - Checar softwares
+                       16 - Checar computadores
+                       == Delecao ==
+                       17 - Deletar todos os softwares\n\n'''))
     
     print(dic.get(escolha, 10)())
 main()
