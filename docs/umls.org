@@ -12,6 +12,9 @@
         -roomClicked(RoomWidget *r) : void
         -on_software_list_clear_button_clicked() : void
         -on_computer_qt_clear_button_clicked() : void
+        -on_computer_qt_disp_input_valueChanged(int arg1) : void
+        -on_actionRefresh_triggered() : void
+        -sortRooms() : void
         -setSoftwareListProperties() : void
         -setRoomList() : void
         -setRoomMap() : void
@@ -21,11 +24,13 @@
         -room_list : QVBoxLayout*
         -selected_room : RoomWidget*
         -computer_grid : QGridLayout*
+        -dbInfo : json
+        -software_json : json;
   }
 
   class RoomWidget {
         mouseReleased(RoomWidget *r) : void
-        +RoomWidget(QString name, QString close_Time, int qts, int qt_max, QWidget *parent = nullptr)
+        +RoomWidget(QString, QString, int, int, std::vector<std::string>, QWidget = nullptr)
         ~RoomWidget()
         +getRoom_name() : QString
         #mouseReleaseEvent ( QMouseEvent * event ) : void
@@ -37,9 +42,31 @@
         -close_time : QString
         -qt_pc : int
         -qt_max_pc : int
+        -matchPCQt : bool
+        -matchSoftwares : bool
+        -getQt_pc() : int
+        -getQt_max_pc() : int
+        -getMatchPCQt() : bool
+        -getMatchSoftwares() : bool
+        -setMatchPCQt(bool n) : void
+        -setMatchSoftwares(bool n) : void
+        -hasSoftware(std::string s) : bool
+  }
+
+  class LogicaCliEnter {
+        +LogicaCliEnter()
+        +getInfo() : json
+        -usuario : string
+        -enderecoServer : string
+        -socket_desc : int
+        -port : int
+        -makeCommand(string commandName) : string
+        -makeRequest(string requestString) : string
+        -createSocket() : void
   }
 
   CliEnter "1..1" o-- "0..*" RoomWidget : possui
+  CliEnter "1..1" *-- "1..1" LogicaCliEnter
 #+end_src
 
 #+RESULTS:
