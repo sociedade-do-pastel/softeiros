@@ -1,5 +1,5 @@
-from servidor import Servidor
-s = Servidor()
+from servidor import Server
+s = Server()
 s.serverSocket()
 
 

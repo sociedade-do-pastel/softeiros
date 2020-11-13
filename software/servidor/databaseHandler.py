@@ -148,7 +148,7 @@ produce a proper json file'''
         QUERY_TO_MAKE = '''SELECT sl.nome_sala, to_char(hora_fechamento, 'HH24:MI')
         FROM public.sala AS sl '''
     elif args == 2:
-        QUERY_TO_MAKE = '''SELECT nome_sala, comp.id_computador, pos_x, pos_y
+        QUERY_TO_MAKE = '''SELECT nome_sala, comp.id_computador, pos_x, pos_y, em_uso
         FROM public.sala AS sl
         JOIN public.computador AS comp USING(nome_sala)'''
     else:
