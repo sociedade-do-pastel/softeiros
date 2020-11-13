@@ -1,0 +1,402 @@
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:nil arch:headline
+#+options: author:nil broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:nil e:t email:nil f:t inline:t num:t
+#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: timestamp:t title:t toc:t todo:t |:t
+#+title: Especificação de teste
+#+language: brazilian
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 27.1 (Org mode 9.4)
+#+latex_header: \usepackage{indentfirst}
+#+latex_header: \usepackage[brazilian]{babel}
+#+latex_header: \usepackage[left=3cm, bottom=2cm, top=3cm, right=2cm]{geometry}
+#+latex_header: \author{Leon Ferreira Bellini \\\small{22218002-8}\and Guilherme Ormond Sampaio \\\small{22218007-7}}
+
+* Introdução
+
+  Desde o começo, o grupo vêm exaltando os processos para desenvolvimento
+  de /software/ promovidos pelo método ágil, o *eXtreme Programming*.
+  Num ciclo de desenvolvimento comum de criação de /software/, há sempre
+  uma fase dedicada especialmente ao teste, o qual, além de estimular o
+  teste unitário durante toda a *fase de codificação* ([[pressman]]),
+  auxilia num controle melhor da qualidade geral dos códigos
+  dos componentes no projeto. Neste sentido,
+  a dupla vêm apresentando uma maneira própria para realizar seus
+  testes, uma vez que esta tem integrado em seus ambientes de desenvolvimento,
+  procedimentos especiais para /debugging/ e testes diretos. Estes serão expostos
+  à seguir. Este documento propõe a exposição ao estilo
+  ``especificação de teste''
+  em algumas de suas partes quando estas
+  se referem ao processo de teste de integração, porém sendo feita
+  de forma reduzida, uma vez que
+  a equipe não observou a necessidade de repetir dados quanto ao
+  *ambiente de desenvolvimento*, *sistema operacional* e as chamadas *ferramentas
+  especiais*.
+
+  Uma convenção que será adotada ao decorrer deste documento será a utilização do
+  termo /debug/ e seus derivados para se referir à depuração, além de utilizar
+  as palavras ``stub'' e ``driver'' para pseudocontrolados e pseudocontroladores,
+  respectivamente.
+    
+* Codificação
+
+  Durante todo o decorrer dos aproximados *2 meses* da programação propriamente
+  dita dos componentes designados após as devidas coletas de requisitos/
+  confecção dos cartões *CRC* ([[CRC]]), a equipe têm realizado o processo de
+  *teste unitário* durante a implementação de tais componentes. Antes
+  de expor como e o porquê da escolha deste tipo de teste, é necessário
+  incluir informações quanto aos ambientes escolhidos pela dupla de programação,
+  como forma de ``localizar'' o leitor quanto às técnicas utilizadas para testes e
+  /debugging/ de uma forma geral.
+
+** O ambiente
+
+   Em nenhum momento as variáveis quanto ao desenvolvimento
+   apresentaram mudanças,
+   estas sendo:
+   - Sistema operacional: Arch GNU/Linux,
+     Kernel de versão 5.9.6-arch1-1 (2 computadores).
+   - /Debuggers/: GUD-gdb (Grand Unified Debugger) para C++, GDB /standalone/
+     no desenvolvimento da interface gráfica e *pdb* (The Python Debugger),
+     /server-side/
+   - Editores de texto e *IDEs*: GNU/Emacs 27.1 e QTCreator 4.13.2
+   - /Framework/ para desenvolvimento de interface gráfica: QT 5.15.1
+   - Linguagens de programação: C++17 e Python 3.8.6
+   - Bibliotecas para utilização de /berkeley sockets/: sockets.h (C) e sockets
+     (Python3)
+   - /Scheduling/ e criação de tabelas: org-mode
+   - SGDB: PostgreSQL
+   - Local: As residências da dupla de programação.
+
+** O processo
+   Apesar de ser composta apenas de dois desenvolvedores, a equipe ainda
+   praticou a *programação em dupla* em todas as suas reuniões
+   dedicadas para
+   codificação, revezando entre programador e observador
+   durante a programação de componentes para dois diferentes segmentos
+   do projeto, o *back-end e o front-end* ([[componentes]]), cada sessão de
+   codificação tendo o objetivo de implementar as interfaces, métodos
+   e classes definidos
+   pelos cartões *CRC* primeiramente e pelos diagramas de *UML* ([[umlorg]]).
+  
+** A segmentação dos componentes
+   Como especificado na seção [[O processo]], o projeto foi ``dividido''
+   por entre os programadores na questão do processo de programação
+   propriamente dito, dado que, devido à época de isolamento social, não
+   foi possível praticar a programação lado-a-lado. A divisão em
+   ``front-end'' e ``back-end'' auxiliou, também, na escolha das
+   devidas bibliotecas/ /frameworks/ para serem utilizadas. Além disso,
+   foi definida por entre os /devs/ um conjunto de chamadas de funções
+   para realizar os /queries/ devidos no database. Todas estas funções
+   foram mapeadas e propriamente documentadas, permitindo que o
+   programador do /front-end/ obtenha rapidamente o conjunto necessário
+   de dados os quais precisa enviar ao /back-end/ ([[funcoes]]).
+
+   Além disso, também foi incluído no segmento do /back-end/, o
+   desenvolvimento do banco de dados responsável pelo armazenamento
+   dos dados relacionados às salas, /softwares/, usuários permitidos
+   e computadores, esta base de dados foi projetada com base
+   nas aulas de *banco de dados* e seu diagrama relacional
+   pode ser encontrado no /Github/ do projeto ([[banco]]). A ferramenta
+   para administração de bancos de dados relacionais, PostgresSQL
+   foi a escolhida para a atual tarefa, uma vez que esta já apresenta
+   estabilidade em suas recentes versões, tem bom suporte à inúmeros
+   tipos de *JOINs* para a junção de tabelas, além de apresentar
+   números excelentes quanto à escalabilidade de dados,
+   algo necessário num ambiente profissional e que contenha tantos
+   usuários como os laboratórios *CGI* da faculdade. 
+   
+*** A documentação
+    Uma escolha importante foi a de escolher como seriam dispostos
+    os comentários por entre a base de códigos, bem como
+    a linguagem das /docstrings/. No caso, o grupo escolheu por
+    comentar em inglês, dado ao fato que o código se torna mais
+    acessível para desenvolvedores de outras regiões realizarem
+    seus /pull requests/ e correções necessárias. Ao menos, num cenário
+    ideal, a equipe, também, espera sempre encontrar bom suporte
+    na /internet/ quando utiliza
+    da língua inglesa. /Docstrings/ apresentam
+    toda a informação necessária para que um programador
+    que não esteja adaptado ao código da equipe possa começar
+    a trabalhar no projeto.
+
+    #+DOWNLOADED: screenshot @ 2020-11-12 18:40:00
+    #+caption: Como são dispostas as /docstrings/ de cada classe/interface.
+    #+attr_latex: :scale 0.5
+    [[file:../../imgs/2020-11-12_18-40-00_screenshot.png]]
+
+    A forma como o grupo definiu os nomes de seus métodos, funções,
+    classes e interfaces se provou muito importante na hora de
+    realizar buscas por múltiplos arquivos, na documentação de um modo geral,
+    no encontro de /erros/ durante o processo de compilação ou interpretação.
+    Além disso, algumas das ferramentas escolhidas, por padrão, já oferecem
+    escolhas automáticas para os nomes de métodos mais informativos.
+
+
+    #+DOWNLOADED: screenshot @ 2020-11-12 19:24:27
+    #+caption:  Como são definidos os nomes dos métodos pelo /QTCreator/
+    #+attr_latex: :scale 0.9
+    [[file:../../imgs/2020-11-12_19-24-27_screenshot.png]]
+
+    Além do mais, a função =help()= providenciada pelo interpretador Python3
+    permite a listagem de todas as funções e variáveis definidas sobre o
+    objeto requisitado, como mostra a imagem ([[help_function]]).
+
+    \clearpage
+    #+DOWNLOADED: screenshot @ 2020-11-12 19:44:19
+    #+name: help_function
+    #+caption: Output do comando help() quando utilizado sobre a classe Server 
+    #+attr_latex: :scale 0.4
+    [[file:../../imgs/2020-11-12_19-44-19_screenshot.png]]
+
+    
+** O controle de versionamento
+
+   Durante o decorrer do projeto, tanto os documentos necessários para as
+   entregas quanto os componentes e programas essenciais foram mantidos
+   ``tracked'' pelo programa dedicado para controle de versionamento *git*,
+   tendo repositório remoto armazenado nos servidores do serviço *Github* ([[github]]).
+   Assim, o grupo manteve melhor domínio sobre o que considerava importante ou
+   não para ser lançado num determinado /commit/, no qual são informadas para
+   todos os usuários de um repositório quais mudanças foram implementadas e/ou
+   excluídas pelos desenvolvedores do projeto.
+
+*** As versões /per se/
+
+    O grupo decidiu por adotar a seguinte sintaxe para informação para controle
+    de versão:
+    - =X.Y.Z= 
+    Onde =X= se trata da versão /major/, =Y= minor e =Z=, /revision/. Tal formato
+    é comumente utilizado nas comunidades de desenvolvimento de /software/ livre,
+    sendo seu maior exemplo, o /kernel/ Linux. Mas além disto, a equipe
+    decidiu por incrementar uma versão /minor/ a cada cartão CRC implementado
+    e um *bump* numa versão /major/ a cada ciclo de desenvolvimento concluído.
+    No momento, o pacote se encontra na versão *0.6.0.*
+   
+* Testes empregados
+
+  Constantemente o grupo tem listado o teste unitário como procedimento
+  obrigatório de seu processo de codificação (e a fase de teste propriamente
+  dita). Como ``segundo passo'' após os teste unitários,
+  a equipe optou por realizar o teste /top-down/. Tais decisões serão
+  expostas nas próximas seções. 
+  
+** O teste unitário
+   Antes da implementação de um componente definido nos conjuntos CRC+UML,
+   a equipe prepara um simples conjunto composto de /driver/
+   (programa simples o qual ``controlará'' o componente) e /stub/
+   (este por sua vez, é o ``controlado'') estes sendo posicionados
+   de forma que insiram e recebam dados através do
+   componente num fluxo pré-definido. O tratamento correto destes dados
+   indica o quão próxima a equipe está de lançar uma nova atualização
+   para este componente.
+   Por focar em apenas um componente por vez,
+   o teste unitário prova-se um ótimo
+   método para depuração e
+   localização de problemas e erros
+   de forma eficiente. Serão exemplificados alguns dos testes realizados
+   nos principais componentes do projeto. É pedido do leitor um julgamento
+   quanto à utilidade do código dos /stubs/ e /drivers/ e não quanto à qualidade
+   do código em si, uma vez que estes programas foram criados apenas para
+   estes testes e nada mais.
+
+
+   
+*** Servidor
+    Foi criado um /driver/ para realizar a tarefa de um acesso de um usuário
+    comum, bem como administradores e usuários não autorizados.
+
+
+    #+DOWNLOADED: screenshot @ 2020-11-12 23:28:38
+    #+caption: Como foi simulado o acesso de um usuário.
+    #+attr_latex: :scale 0.5
+    [[file:../../imgs/2020-11-12_23-28-38_screenshot.png]]
+
+    
+*** Banco de dados
+    O banco de dados apenas recebeu um /driver/, a maioria dos testes
+    feitos para as diversas /queries/ foram realizados através
+    da interface *pgAdmin*. Este /driver/ serviu como forma de inserir
+    rapidamente uma quantidade de dados variados e analisar as respostas
+    do banco de dados, bem como seu /handler/.
+
+    #+DOWNLOADED: screenshot @ 2020-11-12 23:19:30
+    #+caption:  A ``interface'' do driver do database
+    #+attr_latex: :scale 0.3
+    [[file:../../imgs/2020-11-12_23-19-30_screenshot.png]]
+
+    
+*** Interface gráfica
+    Valores substitutos foram
+    manualmente inseridos na interface (tanto do usuário, quanto do
+    administrador),
+    como forma de facilitar a visualização dos
+    elementos posicionados pela tela, informando aos desenvolvedores
+    se tais /widgets/ estão em seus lugares corretos, como
+    mostra a imagem [[teste_int]]. Além disso, também a janela é
+    testada em diferentes monitores, com valores incomuns para altura
+    e largura, valores negativos nas entradas, entre outros. A equipe não
+    se utilizou de um /driver/ para manusear a interface gráfica. 
+
+    #+DOWNLOADED: screenshot @ 2020-11-12 20:10:54
+    #+name:teste_int
+    #+caption:  Os valores ``dummy'' para a interface gráfica
+    #+attr_latex: :scale 0.3
+    [[file:../../imgs/2020-11-12_20-10-54_screenshot.png]]
+
+    
+    \clearpage
+* O teste de integração
+  Logo após a implementação de todo o conjunto de componentes determinado
+  essencial para o funcionamento do sistema, a equipe procedeu a realizar
+  o teste incremental de integração, este sendo /top-down/ e podendo ser
+  exemplificado pelas figuras a seguir:
+
+  #+begin_src plantuml :exports results :file ../../imgs/exemplo_integracao1.png
+    hide empty description
+    [*] --> CliEnter
+    CliEnter --> LogicaCliEnter
+    CliEnter : Já testado standalone
+    LogicaCliEnter --> LogicaCliEnterStub
+    LogicaCliEnter : Precisa ser testado juntamente com CliEnter
+
+    [*] --> AdmEnter
+    AdmEnter --> LogicaAdmEnter
+    LogicaAdmEnter --> Servidor
+    Servidor : Necessita de testes quando este se comunica com o front-end
+    Servidor --> ServidorStub
+  #+end_src
+
+  #+caption: O fluxo do teste top-down, note como os stubs são posicionados
+  #+RESULTS:
+  [[file:../../imgs/exemplo_integracao1.png]]
+
+  Muitas das sessões dedicadas ao teste propriamente dito
+  foram realizadas em conjunção com usuários externos ao
+  projeto, como forma de ir contra à imparcialidade dos
+  desenvolvedores quando em relação ao projeto. Duas
+  pessoas aceitaram a participar dos testes, sendo
+  um aluno do curso de engenharia de produção da FEI e outro
+  aluno da mesma sala dos programadores.
+
+  \clearpage  
+** O fluxo de um teste comum
+   Os desenvolvedores tomaram como importante o teste realizado seguindo
+   o curso de um fluxograma para teste. 
+
+*** Servidor
+    #+begin_src plantuml :exports results :file ../../imgs/grafo_sv.png
+      start
+      :Inicialização;
+      if (Socket inicializado com sucesso) then (Não)
+      :Anunciar erro;
+      stop
+      endif
+      :Checar banco de dados;
+      :Modo de escuta;
+      repeat
+      :Esperar por conexão;
+      if (Novo cliente) then (Sim)
+      fork
+      if (Autorizado) then (Sim)
+      :Interpretar a string recebida;
+      :Transformar string em JSON;
+      :Realizar query pedida;
+      :Responder usuário
+      de forma apropriada;
+      endif
+      fork again
+      :Processo multithreading
+      de outro usuário;
+      endfork
+      endif
+      repeat while (Finalização requisitada?) 
+      stop
+    #+end_src
+    
+    #+attr_latex: :scale 0.4
+    #+caption: Fluxo básico relativo ao componente Servidor
+    #+RESULTS:
+    [[file:../../imgs/grafo_sv.png]]
+
+    \clearpage
+*** Lógicas
+    #+begin_src plantuml :exports results :file ../../imgs/grafo_logica.png
+      start
+      repeat
+      :Receber dados da interface;
+      if (Dados faltantes?) then (Não)
+      :Converter todos os campos
+      no formato JSON;
+      :Criar socket;
+      if (Socket falhou?) then (Sim)
+      :Anunciar erro;
+      stop
+      else (Socket criado com sucesso)
+      :Realizar encoding do JSON em String;
+      :Enviar String para o servidor;
+      :Interpretar Resposta;
+      :Finalizar sessão TCP;
+      endif
+      endif
+      repeat while (Mais dados necessários) is (Sim)
+      ->Finalizar processo;
+      stop
+
+    #+end_src
+
+    #+attr_latex: :scale 0.6
+    #+caption: Fluxo para o tratamento de dados da interface gráfica.
+    #+RESULTS:
+    [[file:../../imgs/grafo_logica.png]]
+
+    \clearpage
+*** Banco de dados
+    
+    #+begin_src plantuml :exports results :file ../../imgs/grafo_db.png
+      start
+      :Recebida string do usuário;
+      :Acessar no dicionário
+      a função requisitada;
+      :Realizar query
+      definido pela função;
+      :Retornar tupla com todos
+      os resultados obtidos
+      através da query para
+      o servidor;
+      stop
+    #+end_src
+    
+    #+attr_latex: :scale 0.6
+    #+caption: Como é realizado um acesso ao banco de dados.
+    #+RESULTS:
+    [[file:../../imgs/grafo_db.png]]
+
+    \clearpage
+
+* Bibliografia
+****** <<pressman>>
+       PRESSMAN, Roger S. *Engenharia de software:*
+       Uma abordagem profissional. 7. ed. Porto Alegre: AMGH Editora, 2011.
+****** <<CRC>>
+       SAMPAIO, Guilherme O. *Cartões CRC*.
+       Disponível em: \newline
+       <https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/crcCards.pdf>. Acesso em: 03 novembro 2020.
+****** <<componentes>>
+       BELLINI, Leon F. *Diagrama de componentes*. Disponível em: \newline
+       < https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/diagramo_cont.png >. Acesso em: 04 novembro 2020.
+****** <<umlorg>>
+       SAMPAIO, Guilherme O. *Diagramas UML*.
+       Disponível em: \newline
+       < https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/crcCards.pdf >. Acesso em: 03 novembro 2020.
+****** <<funcoes>>
+       BELLINI, Leon F. *Referência das chamadas*. Disponível em:
+       <>. Acesso em: 11 novembro 2020.
+****** <<banco>>
+       BELLINI, Leon F. *Diagrama relacional*.
+       Disponível em: \newline <https://github.com/sociedade-do-pastel/softeiros/blob/master/imgs/diagramo_rel.png >.
+       Acesso em: 01 novembro 2020.
+****** <<github>>
+       SOFTEIROS. Disponível em: \newline
+       < https://github.com/sociedade-do-pastel/softeiros >. Acesso em: 10 novembro 2020.

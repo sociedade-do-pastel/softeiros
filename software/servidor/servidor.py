@@ -1,7 +1,7 @@
 ##########################################################
-# This is the file where our server object is defined as #
+# This is the file where our server object is defined,as #
 # well as its default values, protocols and everything   #
-# else.                                                  #
+# else related to the main server structure.             #
 ##########################################################
 from _thread import start_new_thread
 import socket as soos
@@ -26,12 +26,14 @@ MAPPED_QUERIES = {
     "createSoftware": dh.createSoftware,
     "removeSoftware": dh.removeSoftware,
     # check queries
-    "salista": dh.getSalas,
-    "computerList": dh.getComputer,
-    "softwareList": dh.getSoftwares,
+    "salista": dh.salista,
+    "computerList": dh.computerList,
+    "softwareList": dh.softwareList,
+    # delete all softwares
+    "expungeSoftware": dh.expungeSoftware,
 }
 
-class Servidor:
+class Server:
     """
     Our main server class.
     --
@@ -122,9 +124,9 @@ class Servidor:
             # mainLoop receives a proper socket object AND an address tuple
             # any change related to adapting this program to multithreading
             # should just change the main loop and how a branching occurs
+            # uncomment this if you wish to turn this program single thread
             # self.mainLoop(sock.accept())
             
-          
     def checkDB(self):
         return dh.checkAllTables()
       
@@ -136,10 +138,8 @@ class Servidor:
         print(SocketObject)
         try:
             ConsSocketCommunication = SocketObject
-            # Socket object index 0 gets the socket itself,
-            # whereas 1 returns our client's address
-            # first, we must check if the user is an administrator
-            # or a common user
+            # parse string will parse the upcoming JSON string
+            # and turn it into a proper JSON object
             Control = self.parseString(
                 ConsSocketCommunication.recv(1024).decode("UTF-8"))
             if Control and Control.get("usuario") == self.DefaultUser:
@@ -164,7 +164,7 @@ class Servidor:
                 incorrectly, please try again later'''}).encode("UTF-8"))
 
         finally:
-            SocketObject.sendall("END".encode("UTF-8"))
+            print("Disconnected from client")
             self.lock_thread.release()
             
     def checkCredentials(self, Control):
@@ -191,14 +191,16 @@ class Servidor:
         # then we finalize our message with a literal uppercase END
        
     def admProcedure(self, socketObject, Control):
-        if Control.get("arglist") is not None and Control.get("function") is not None:
-            adm_response = MAPPED_QUERIES.get(
-                Control.get("function"))(Control.get("arglist"))
-            socketObject.sendall(self.createResponseAdm(adm_response))
-        else:
-            adm_error_message = f'''Usuario {Control.get("usuario")} cadastrado,
-            porem query nao compreendido'''
-            self.sendError(socketObject, adm_error_message)
+        if Control.get("function") is not None:
+            arglist = Control.get("arglist")
+            if arglist is not None:
+                adm_response = MAPPED_QUERIES.get(
+                    Control.get("function"))(arglist) or "Database retornou null"
+            else:
+                adm_response = MAPPED_QUERIES.get(
+                    Control.get("function"))() or "Database retornou null"
+        socketObject.sendall(self.createResponseAdm(adm_response))
+        
     def createResponseAdm(self, response_to_transform):
         return json.dumps(
             {"database_response": response_to_transform}).encode("UTF-8")
@@ -223,7 +225,8 @@ class Servidor:
                 Control.get("function", None))(2):
             dictionary_to_send[lista_computadores[0]]["lista_computadores"][lista_computadores[1]] = {
             "pos_x":lista_computadores[2],
-            "pos_y":lista_computadores[3]}
+                "pos_y":lista_computadores[3],
+                "em_uso": lista_computadores[4]}
         # all software pieces with no doubled items
         for lista_soft in MAPPED_QUERIES.get(
                 Control.get("function", None))(None):
