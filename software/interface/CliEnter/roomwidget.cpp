@@ -1,7 +1,7 @@
 #include "roomwidget.h"
 #include "ui_roomwidget.h"
 
-RoomWidget::RoomWidget(QString room_name, QString close_time, int qt_pc, int qt_max_pc, QWidget *parent) :
+RoomWidget::RoomWidget(QString room_name, QString close_time, int qt_pc, int qt_max_pc, std::vector<std::string> s, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::RoomWidget)
 {
@@ -10,6 +10,10 @@ RoomWidget::RoomWidget(QString room_name, QString close_time, int qt_pc, int qt_
     this->close_time = close_time;
     this->qt_pc = qt_pc;
     this->qt_max_pc = qt_max_pc;
+    software_list = s;
+
+    matchPCQt = true;
+    matchSoftwares = true;
 
     updateLabels();
 }
@@ -46,8 +50,47 @@ QString RoomWidget::getRoom_name()
     return room_name;
 }
 
+int RoomWidget::getQt_pc()
+{
+    return qt_pc;
+}
+
+int RoomWidget::getQt_max_pc()
+{
+    return qt_max_pc;
+}
+
+bool RoomWidget::getMatchPCQt()
+{
+    return matchPCQt;
+}
+
+bool RoomWidget::getMatchSoftwares()
+{
+    return matchSoftwares;
+}
+
+void RoomWidget::setMatchPCQt(bool n)
+{
+    matchPCQt = n;
+}
+
+void RoomWidget::setMatchSoftwares(bool n)
+{
+    matchSoftwares = n;
+}
+
 void RoomWidget::mouseReleaseEvent (QMouseEvent * event)
 {
     QWidget::mouseReleaseEvent(event);
     emit mouseReleased(this);
+}
+
+bool RoomWidget::hasSoftware(std::string s)
+{
+    for (auto &x : software_list){
+        if (x == s)
+            return true;
+    }
+    return false;
 }

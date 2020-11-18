@@ -1,7 +1,7 @@
 #include "LogicaCliEnter.hpp"
 
 LogicaCliEnter::LogicaCliEnter()
-	: usuario{"jooj"}, senha{""}, enderecoServer{"192.168.0.1"}, port{8080}
+	: usuario{"jooj"}, enderecoServer{"127.0.0.1"}, port{8080}
 {
 	createSocket();
 }
@@ -10,7 +10,6 @@ string LogicaCliEnter::makeCommand(string commandName)
 {
     json response = {
 		{"usuario", usuario},
-		{"senha", senha},
 		{"function", commandName}
 	};
 
@@ -21,19 +20,21 @@ string LogicaCliEnter::makeRequest(string requestString)
 {
 	char resposta[2000];
 	
-	if (send(socket_desc , requestString.c_str(), int(requestString.size()), 0) < 0)
+    if (send(socket_desc , requestString.c_str(), int(requestString.size()), 0) < 0)
 		std::cout << "Send error!" << "\n";
 
 	if (recv(socket_desc, resposta, 2000, 0) < 0)
 		std::cout << "Receive failed" << "\n";
-	
+
+	std::cout << resposta << "\n";
+
 	return resposta;
 }
 
 json LogicaCliEnter::getInfo()
 {
 	json request = json::parse(makeRequest(makeCommand("userGeneralQuery")));
-	
+
 	return request;
 }
 

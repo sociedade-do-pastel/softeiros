@@ -20,7 +20,6 @@ public:
 
 private:
 	string usuario;
-	string senha;
 	string enderecoServer;
 	int socket_desc;
 	int port;
