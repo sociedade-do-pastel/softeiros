@@ -23,7 +23,6 @@ CliEnter::CliEnter(QWidget *parent)
     selected_room = nullptr;
 
     dbInfo = controler.getInfo();
-    cout << dbInfo << "\n";
 
     setRoomList();
     setSoftwareListProperties();
@@ -159,6 +158,24 @@ void CliEnter::sortRooms()
 
 void CliEnter::on_actionRefresh_triggered()
 {
+    selected_room = nullptr;
+
+    for (auto &item : software_items_list)
+        delete item;
+
+    software_items_list = {};
+    ui->software_list->clear();
+
+    room_widgets_list = {};
+    QLayoutItem* item;
+    while ( ( item = room_list->takeAt( 0 ) ) != NULL )
+    {
+        delete item->widget();
+        delete item;
+    }
+
     dbInfo = controler.getInfo();
 
+    setRoomList();
+    setSoftwareListProperties();
 }

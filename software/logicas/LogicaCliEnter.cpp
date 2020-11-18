@@ -2,9 +2,7 @@
 
 LogicaCliEnter::LogicaCliEnter()
 	: usuario{"jooj"}, enderecoServer{"127.0.0.1"}, port{8080}
-{
-	createSocket();
-}
+{}
 
 string LogicaCliEnter::makeCommand(string commandName)
 {
@@ -72,13 +70,14 @@ LogicaCliEnter::makeRequest(string requestString)
 {
   if (send(socket_desc , requestString.c_str(), int(requestString.size()), 0) < 0)
     std::cout << "Send error!" << "\n";
-
+  
   return this->parseResponseString();
 
 }
 
 json LogicaCliEnter::getInfo()
 {
+    createSocket();
 	json request = json::parse(makeRequest(makeCommand("userGeneralQuery")));
 
 	return request;

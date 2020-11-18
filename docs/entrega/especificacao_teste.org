@@ -389,10 +389,10 @@
 ****** <<umlorg>>
        SAMPAIO, Guilherme O. *Diagramas UML*.
        Disponível em: \newline
-       < https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/crcCards.pdf >. Acesso em: 03 novembro 2020.
+       < https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/umls.pdf >. Acesso em: 18 novembro 2020.
 ****** <<funcoes>>
        BELLINI, Leon F. *Referência das chamadas*. Disponível em:
-       <>. Acesso em: 11 novembro 2020.
+       < https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/referencia_chamadas.pdf >. Acesso em: 18 novembro 2020.
 ****** <<banco>>
        BELLINI, Leon F. *Diagrama relacional*.
        Disponível em: \newline <https://github.com/sociedade-do-pastel/softeiros/blob/master/imgs/diagramo_rel.png >.
