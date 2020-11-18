@@ -135,34 +135,33 @@ class Server:
         Branching path for multithreading, here all the communication is done
         with a single client.
         """
-        print(SocketObject)
         try:
             ConsSocketCommunication = SocketObject
             # parse string will parse the upcoming JSON string
             # and turn it into a proper JSON object
             Control = self.parseString(
                 ConsSocketCommunication.recv(1024).decode("UTF-8"))
-            if Control and Control.get("usuario") == self.DefaultUser:
+            if Control is None:
+                self.sendObject(json.dumps({"state":"connected"}),
+                                ConsSocketCommunication)
+            elif Control.get("usuario") == self.DefaultUser:
                 self.commonUserProcedure(ConsSocketCommunication, Control)
             elif Control.get("senha") is not None:
                 if self.checkCredentials(Control) == []:
-                    self.sendError(ConsSocketCommunication,
+                    self.sendObject(ConsSocketCommunication,
                                "Credenciais não reconhecidas, tente novamente.")
                 else:
                     self.admProcedure(ConsSocketCommunication, Control)
             else:
                 # in case it's some attacker trying to snoop around
-                ConsSocketCommunication.sendall('''
-                Your request doesn't comform with our 
-                request standards, please reformat.
-                '''.encode("UTF-8"))
+                self.sendObject(json.dumps(
+                    {"error": "Your request doesn't comform with our standards"}), ConsSocketCommunication)
+                
         except TypeError as err:
             print("Erro ao resgatar do database")
             print(err)
-            SocketObject.sendall(
-                json.dumps({"Error": '''Our server has handled your request
-                incorrectly, please try again later'''}).encode("UTF-8"))
-
+            self.sendObject(json.dumps(
+                {"Error": "Our server has handled your request incorrectly, please try again later"}), ConsSocketCommunication)
         finally:
             print("Disconnected from client")
             self.lock_thread.release()
@@ -170,9 +169,14 @@ class Server:
     def checkCredentials(self, Control):
         return dh.checkUser((Control.get("usuario"), Control.get("senha")))
 
-    def sendError(self, SocketObject, ErrorMessage):
-        SocketObject.sendall(ErrorMessage.encode("UTF-8"))
-
+    def sendObject(self, MessageOrRequest, SocketObject):
+        ObjectToSend = MessageOrRequest.encode("UTF-8") # string to send
+        ObjectToSendSize = len(ObjectToSend) # length in bytes of the above object
+        # first we send information regarding the length of the string we're sending
+        SocketObject.sendall(bytes(str(ObjectToSendSize), "UTF-8"))
+        SocketObject.sendall(b'\n') # ending our connection 
+        # then the object itself
+        SocketObject.sendall(ObjectToSend)
         
     def commonUserProcedure(self, socketObject, Control):
         """
@@ -186,10 +190,8 @@ class Server:
         Control = String
         Parsed incoming json from a single client
         """
-        # first we send all of our software list
-        socketObject.sendall(self.createResponseUser(Control))
-        # then we finalize our message with a literal uppercase END
-       
+        self.sendObject(self.createResponseUser(Control), socketObject)
+        
     def admProcedure(self, socketObject, Control):
         if Control.get("function") is not None:
             arglist = Control.get("arglist")
@@ -199,11 +201,11 @@ class Server:
             else:
                 adm_response = MAPPED_QUERIES.get(
                     Control.get("function"))() or "Database retornou null"
-        socketObject.sendall(self.createResponseAdm(adm_response))
+        self.sendObject(self.createResponseAdm(adm_response), socketObject)
         
     def createResponseAdm(self, response_to_transform):
         return json.dumps(
-            {"database_response": response_to_transform}).encode("UTF-8")
+            {"database_response": response_to_transform})
         
     def createResponseUser(self, Control):
         """
@@ -232,4 +234,4 @@ class Server:
                 Control.get("function", None))(None):
             dictionary_to_send[lista_soft[0]]["lista_softwares"].append(
                 lista_soft[1])
-        return json.dumps(dictionary_to_send).encode("UTF-8")
+        return json.dumps(dictionary_to_send)
