@@ -1,0 +1,36 @@
+#+title: Referência das /function calls/
+#+options: ^:nil
+
+* Introdução
+Este documento serve como referência para o(os) desenvolvedor(es)
+do /front-end/ ao chamar as funções para /query/ no /database/.
+
+* Function calls do administrador
+|           | Usuário    | Sala       | Softwares      | Computadores   |
+|-----------+------------+------------+----------------+----------------|
+| Criar     | createUser | createSala | createSoftware | createComputer |
+| Remover   | removeUser | removeSala | removeSoftware | removeComputer |
+| Consultar |            | salista    | softwareList   | computerList   |
+| Editar    |            | editSala   |                |                |
+
+* Function call exclusiva do usuário
+  - userGeneralQuery
+
+    
+* Argumentos
+  | Nome função     | Argumentos requeridos               |
+  |-----------------+-------------------------------------|
+  | createUser      | nome_usuario, senha_usuario         |
+  | removeUser      | id_user                             |
+  | createSala      | nome_sala, hora_fechamento, ip_sala |
+  | createSoftware  | nome_software, id_computador        |
+  | removeSoftware  | id_computador, nome_software        |
+  | createComputer  | nome_sala, pos_x, pos_y             |
+  | removeComputer  | id_computador                       |
+  | editSala        | nome_sala, hora_fechamento, ip_sala |
+  | salista         |                                     |
+  | softwareList    |                                     |
+  | computerList    |                                     |
+  | expungeSoftware | nome_software                       |
+
+  
