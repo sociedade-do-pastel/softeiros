@@ -74,12 +74,13 @@ LogicaCliEnter::makeRequest(string requestString)
     std::cout << "Send error!" << "\n";
 
   return this->parseResponseString();
+
 }
 
 json LogicaCliEnter::getInfo()
 {
 	json request = json::parse(makeRequest(makeCommand("userGeneralQuery")));
-	
+
 	return request;
 }
 

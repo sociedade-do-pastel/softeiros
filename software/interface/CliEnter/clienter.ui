@@ -320,6 +320,9 @@
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -328,10 +331,39 @@
      <height>32</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menuOp_es">
+    <property name="title">
+     <string>Opções</string>
+    </property>
+    <addaction name="actionRefresh"/>
+   </widget>
+   <addaction name="menuOp_es"/>
   </widget>
-  <action name="actionLogin">
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="floatable">
+    <bool>true</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionRefresh"/>
+  </widget>
+  <action name="actionRefresh">
+   <property name="icon">
+    <iconset resource="images.qrc">
+     <normaloff>:/icons/imgs/syncIcon.png</normaloff>:/icons/imgs/syncIcon.png</iconset>
+   </property>
    <property name="text">
-    <string>Login</string>
+    <string>Refresh</string>
    </property>
   </action>
  </widget>
@@ -342,6 +374,8 @@
   <tabstop>software_list</tabstop>
   <tabstop>room_list</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="images.qrc"/>
+ </resources>
  <connections/>
 </ui>

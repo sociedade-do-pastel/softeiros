@@ -1,5 +1,6 @@
 #include "clienter.h"
 #include "ui_clienter.h"
+#include <iostream>
 
 CliEnter::CliEnter(QWidget *parent)
     : QMainWindow(parent)
@@ -21,21 +22,29 @@ CliEnter::CliEnter(QWidget *parent)
 
     selected_room = nullptr;
 
-    software_items_list.push_back(new QListWidgetItem("teste"));
-    software_items_list.push_back(new QListWidgetItem("teste2"));
-    software_items_list.push_back(new QListWidgetItem("teste3"));
-    software_items_list.push_back(new QListWidgetItem("teste4"));
-    software_items_list.push_back(new QListWidgetItem("teste5"));
+    dbInfo = controler.getInfo();
+    cout << dbInfo << "\n";
 
-    setSoftwareListProperties();
     setRoomList();
-    setRoomMap();
+    setSoftwareListProperties();
 }
 
 void CliEnter::setRoomList(){
-    room_widgets_list.push_back(new RoomWidget("K301", "7h10", 15, 30));
-    room_widgets_list.push_back(new RoomWidget("K305", "8h10", 13, 30));
-    room_widgets_list.push_back(new RoomWidget("K307", "9h10", 30, 30));
+    for (const auto &x : dbInfo.items()){
+        int qtLugares{0};
+
+        QString qsala = x.key().data();
+        string qhora = dbInfo[qsala.toStdString()]["hora_fechamento"];
+
+        for (auto &y : dbInfo[qsala.toStdString()]["lista_computadores"])
+            qtLugares++;
+
+        for (auto &y : dbInfo[qsala.toStdString()]["lista_softwares"].get<std::vector<string>>())
+            software_json[y] = 0;
+
+        room_widgets_list.push_back(new RoomWidget(x.key().data(), QString::fromStdString(qhora), 0, qtLugares,
+                                                   dbInfo[qsala.toStdString()]["lista_softwares"].get<std::vector<string>>()));
+    }
 
     for(auto &x : room_widgets_list){
         room_list->addWidget(x);
@@ -44,8 +53,10 @@ void CliEnter::setRoomList(){
 }
 
 void CliEnter::setSoftwareListProperties(){
+    for (auto &y : software_json.items())
+        software_items_list.push_back(new QListWidgetItem(QString::fromStdString(y.key().data())));
 
-    for(auto &x : software_items_list){
+    for (auto &x : software_items_list){
         ui->software_list->addItem(x);
         x->setFlags(x->flags() | Qt::ItemIsUserCheckable);
         x->setCheckState(Qt::Unchecked);
@@ -56,10 +67,15 @@ void CliEnter::setSoftwareListProperties(){
 }
 
 void CliEnter::softwareAreaCheckActions(QListWidgetItem* item){
-    if(item->checkState() == Qt::Checked)
-        QMessageBox::about(this, "Info", item->text() + " clicado");
-    else
-        QMessageBox::about(this, "Info", item->text() + " desclicado");
+    for (auto &x : room_widgets_list) {
+        x->setMatchSoftwares(true);
+        for (auto &y : software_items_list) {
+            if (y->checkState() == Qt::Checked)
+                if (!x->hasSoftware(y->text().toStdString()))
+                    x->setMatchSoftwares(false);
+      }
+  }
+  sortRooms();
 }
 
 CliEnter::~CliEnter()
@@ -71,6 +87,8 @@ void CliEnter::on_software_list_clear_button_clicked()
 {
     for(int i = 0; i < ui->software_list->count(); ++i)
         ui->software_list->item(i)->setCheckState(Qt::Unchecked);
+    for (auto &x : room_widgets_list)
+        x->setMatchSoftwares(true);
 }
 
 void CliEnter::on_computer_qt_clear_button_clicked()
@@ -91,16 +109,56 @@ void CliEnter::roomClicked(RoomWidget *r)
 
 void CliEnter::setRoomMap()
 {
-    int altura{5}, largura{5};
-
-    for(int i{0}; i < altura; i++){
-        for(int j{0}; j < largura; j++){
-            QLabel* icon = new QLabel();
-            QPixmap map = QPixmap(":/icons/imgs/pcMapVerde.png");
-            icon->setMargin(25);
-            icon->setScaledContents(true);
-            icon->setPixmap(map.scaled(icon->width()/5, icon->height()/5, Qt::KeepAspectRatioByExpanding));
-            computer_grid->addWidget(icon, i, j);
-        }
+    QLayoutItem* item;
+    while ( ( item = computer_grid->layout()->takeAt( 0 ) ) != NULL )
+    {
+        delete item->widget();
+        delete item;
     }
+
+    for (auto &x : dbInfo[selected_room->getRoom_name().toStdString()]["lista_computadores"]) {
+        QLabel* icon = new QLabel();
+        QPixmap map;
+        if (x["em_uso"])
+            map = QPixmap(":/icons/imgs/pcMapVermelho.png");
+        else
+            map = QPixmap(":/icons/imgs/pcMapVerde.png");
+        icon->setMargin(25);
+        icon->setScaledContents(true);
+        icon->setPixmap(map.scaled(icon->width()/5, icon->height()/5, Qt::KeepAspectRatioByExpanding));
+        computer_grid->addWidget(icon, int(x["pos_x"])-1, int(x["pos_y"])-1);
+    }
+
+    for (int x{0}; x<computer_grid->columnCount(); ++x)
+        computer_grid->setColumnStretch(x, 1);
+
+    for (int y{0}; y<computer_grid->rowCount(); ++y)
+        computer_grid->setRowStretch(y, 1);
+}
+
+void CliEnter::on_computer_qt_disp_input_valueChanged(int arg1)
+{
+    for (auto &x : room_widgets_list) {
+        if (x->getQt_max_pc() - x->getQt_pc() < arg1)
+            x->setMatchPCQt(false);
+        else
+            x->setMatchPCQt(true);
+    }
+    sortRooms();
+}
+
+void CliEnter::sortRooms()
+{
+    for (auto x : room_widgets_list) {
+        if (x->getMatchPCQt() && x->getMatchSoftwares())
+            x->setVisible(true);
+        else
+            x->setVisible(false);
+    }
+}
+
+void CliEnter::on_actionRefresh_triggered()
+{
+    dbInfo = controler.getInfo();
+
 }

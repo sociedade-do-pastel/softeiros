@@ -5,5 +5,6 @@
         <file>imgs/pcAmarelo.png</file>
         <file>imgs/pcMapVermelho.png</file>
         <file>imgs/pcMapVerde.png</file>
+        <file>imgs/syncIcon.png</file>
     </qresource>
 </RCC>

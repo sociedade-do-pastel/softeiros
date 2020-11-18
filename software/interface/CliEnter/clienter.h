@@ -8,7 +8,9 @@
 #include <QString>
 #include <QGroupBox>
 #include <vector>
+#include <nlohmann/json.hpp>
 #include "roomwidget.h"
+#include "../../logicas/LogicaCliEnter.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class cliEnter; }
@@ -31,6 +33,10 @@ private slots:
 
     void on_computer_qt_clear_button_clicked();
 
+    void on_computer_qt_disp_input_valueChanged(int arg1);
+
+    void on_actionRefresh_triggered();
+
 private:
     Ui::cliEnter *ui;
     std::vector<QListWidgetItem*> software_items_list;
@@ -38,7 +44,11 @@ private:
     QVBoxLayout *room_list;
     RoomWidget *selected_room;
     QGridLayout *computer_grid;
+    LogicaCliEnter controler;
+    json dbInfo;
+    json software_json;
 
+    void sortRooms();
     void setSoftwareListProperties();
     void setRoomList();
     void setRoomMap();
