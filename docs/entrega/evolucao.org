@@ -1,0 +1,287 @@
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:nil arch:headline
+#+options: author:nil broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:nil e:t email:nil f:t inline:t num:t
+#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: timestamp:t title:t toc:t todo:t |:t
+#+title: Evolução e manutenção do /software/
+#+language: brazilian
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 27.1 (Org mode 9.4)
+#+latex_header: \usepackage{indentfirst}
+#+latex_header: \usepackage[brazilian]{babel}
+#+latex_header: \usepackage[left=3cm, bottom=2cm, top=3cm, right=2cm]{geometry}
+#+latex_header: \author{Leon Ferreira Bellini \\\small{22218002-8}\and Guilherme Ormond Sampaio \\\small{22218007-7}}
+
+* Quanto à melhoria contínua realizada sobre o /software/
+  Como evidenciado pelo repositório público do projeto ([[github]])
+  este existente desde os primeiros dias, o plano da equipe
+  sempre foi disponibilizar tal software de forma que este
+  respeite os conceitos de /free software/
+  (não confundir com /open source/) ([[freesoft]]), no qual está sempre garantida
+  a mudança de um programa/software,
+  /forking/ (espelhamento da base de código por um outro mantenedor),
+  melhoria, distribuição (desde que respeite as condições
+  apresentadas na licença escolhida pelos desenvolvedores ) por qualquer pessoa.
+
+  Neste caso a melhoria contínua *e* evolução seria,
+  então, garantida pelas
+  constantes modificações propostas pela comunidade ou, até mesmo,
+  pelos próprios programadores os quais não estiverem mais
+  vinculados com o projeto. A documentação apresentada em relatório
+  anterior foi outro método definido pelos membros do grupo como uma
+  boa forma de *permitir que haja a continuação do desenvolvimento*.
+  Estes são, pelo menos os planos da equipe para a *futura* manutenção
+  do /software/, uma vez que os planos para desenvolvimento de
+  um trabalho de conclusão de curso ainda estão incertos/em fase
+  inicial. 
+
+  Além do mais, durante todo o processo de desenvolvimento,
+  planejamento, realização de testes e documentação, foi dada
+  atenção extra para com os eventuais /bugs/, problemas ou má formatação
+  de alguma /docstring/ presente no código de alguma classe desenvolvida.
+  
+  É possível, inclusive, notar que os /commits/ nunca cessaram,
+  demonstrando o cuidado da equipe em relação à qualidade do
+  material apresentado. É incontestável que, a quantidade de /commits/, análogo à
+  linhas de código, não determina a qualidade ou não de um /software/,
+  ainda mais se o processo de desenvolvimento pelo qual este não
+  apresentou algum planejamento. /Commits/ constantes, inclusive, podem
+  evidenciar o despreparo de uma equipe ao resolver seus problemas
+  através de um *funil*. É garantido pela equipe, através dos inúmeros
+  exemplos passados através dos quatro relatórios anteriores que
+  este não é o caso. 
+    
+* Quanto à melhoria do *processo de software* e o modelo de maturidade
+  Contando com dois programadores inexperientes no sentido de
+  atuação na área, a equipe teve seu primeiro contato com
+  os processos definidos como parte da engenharia de /software/
+  durante o curso, estas sendo ferramentas e/ou métodos
+  diversos para uma melhor administração do tempo quando
+  desenvolvendo um projeto como o /scheduling/ em si, a criação
+  de uma tabela /kanban/, a prática da análise de riscos através
+  de uma matriz SWOT, a própria ``filosofia'' pregada
+  pelo *XP* etc. O grupo ainda adaptou os processos para que
+  estes atendam melhor às suas preferências quando desenvolvendo
+  algum tipo de /software/, apesar de tal adaptação ser, provavelmente,
+  difícil de ser aplicada numa empresa real, na qual as ferramentas
+  a serem utilizadas sejam fixadas e estáticas.
+
+  Diante da discussão promovida pelo livro de Roger Pressman
+  ([[pressman]]) e diante da escala para níveis de maturidade
+  determinada pelo
+  /Software Engineering Institute/ (Instituto de engenharia de /software/),
+  a equipe se posiciona por entre os níveis 2 (reproduzível)
+  e 3 (definido)x. Ocorre, sim uma documentação de todo o processo de /software/,
+  não sendo apenas composta de *cartões CRC*, mas também de
+  diagramas de classes *UML* derivados destes cartões, além dos diagramas
+  de componentes e modelo-relacional para definição estrutural
+  do banco de dados. Os processos em si são, em parte, respeitados,
+  sendo ignorados quando estes vêm de encontro com os métodos
+  os quais a equipe emprega por questão de costume ou por estes
+  simplesmente atrapalharem o desenvolvimento do /software/ quando
+  avaliados pelos membros do grupo. Este é, inclusive, o motivo
+  pelo qual a equipe não se posiciona como sendo uma *nível 3*:
+  se, porventura, o grupo vir a trabalhar num cenário real
+  de desenvolvimento de /software/, as preferências dos
+  desenvolvedores poderiam ser minimizadas ou até, ignoradas.
+
+  De forma positiva, portanto, não foi observado algum
+  comportamento o qual possa incluir o grupo num
+  *nível de imaturidade*. 
+  
+*** Continuidade da funcionalidade
+    Também inerente ao processo de melhoria contínua, pelo menos, na visão do grupo,
+    está a perseverança da funcionalidade do /software/. Além
+    dos benefícios apresentados pelos /free software/ e um
+    desenvolvimento e gestão de qualidade abertos à comunidade,
+    a presença de inúmeros contribuintes auxilia em um importante
+    aspecto funcional, a *portabilidade*. A equipe, por exemplo, é composta de
+    usuários de sistemas GNU/Linux e desenvolveu seu programa tendo
+    tal sistema como base. A funcionalidade é garantida para todas
+    as distribuições que tenham em seus repositórios as versões
+    das dependências do projeto. Entretanto, os programadores
+    optaram por utilizar-se das ferramentas as quais tenham algum
+    suporte além do já existente no sistema escolhido. O servidor foi
+    escrito em *Python*, não apresentando nenhuma dependência
+    além de protocolos como os *berkeley sockets* e
+    possuindo versões para *Windows*, *Macintosh* e variações de
+    *BSD.* Além disso, a porção codificada em C++,
+    uma linguagem ``oficialmente compilada'', também não depende de
+    bibliotecas ou /frameworks/ mal documentadas, desconhecidas por
+    muitos ou até mesmo *completamente proprietárias*. O ato de /cross-compiling/
+    pode ocorrer em qualquer momento e para diversos sistemas os quais
+    possuam uma versão da /framework/ para desenvolvimento
+    de interface gráfica, QT5, estas sendo *muitas* ([[qt5]]).
+    Como ferramenta para administração do banco de dados
+    foi utilizado o *SGDB* PostgreSQL, outro notável exemplo
+    de /software livre/ com amplo sucesso no mercado empresarial,
+    também apresentando versões para inúmeros sistemas diferentes.
+
+    Novamente, a documentação e exposição pública de todos
+    os diagramas, auxilia na adaptação do programa realizada
+    por qualquer pessoa que tenha a intenção de melhorar
+    tal sistema.
+    
+** Complexidade nos piores casos
+   Em ambos os fins da conexão criada entre cliente e servidor no sistema
+   desenvolvido pela equipe, ocorre o processo de /parsing/, pelo
+   qual é realizado o processo de *interpretação* das mensagens
+   enviadas por um dos agentes ativos na conexão. Nota-se pelas
+   figuras [[parse1]] e [[parse2]] que tal processo é delegado para
+   bibliotecas específicas para interpretação de
+   *JSon* de suas respectivas linguagens. O grupo não teve tempo
+   de realizar a devida análise dos códigos de cada biblioteca,
+   porém, é seguro afirmar que cada processo de interpretação
+   assume uma complexidade assintótica na ordem de *O(n)*.
+
+   Objetos *Json*, por serem padronizados por uma *RFC*,
+   possuem uma sintaxe ``universal'', pela qual é apresentado
+   um símbolo para iniciar um subprocesso para interpretação.
+   Tomemos o objeto ={"teste":1234}= como exemplo. As chaves
+   indicam para um interpretador genérico que há um
+   *Json* para ser interpretado, as aspas informam que há
+   uma *string* com um ``peso'' de *chave* pois esta se encontra
+   antes dos dois pontos. Tal padronização facilita
+   na dedução da complexidade de uma biblioteca para tal processo,
+   desde que esta seja corretamente implementada. O processo
+   em si dependeria, por fim, dos *n* caracteres presentes
+   em cada ``sub-objeto'' do *Json*. As funções de interpretação,
+   então, seriam da ordem de *O(n)* em ambos os fins
+   da conexão. 
+ 
+   
+   #+DOWNLOADED: screenshot @ 2020-11-18 16:49:29
+   #+name: parse1
+   #+caption: Parse realizado por parte do servidor.
+   #+attr_latex: :scale 0.70
+   [[file:../../imgs/2020-11-18_16-49-29_screenshot.png]]
+
+
+   #+DOWNLOADED: screenshot @ 2020-11-18 16:52:16
+   #+name: parse2
+   #+caption: Parse realizado por parte do cliente.
+   #+attr_latex: :scale 0.80
+   [[file:../../imgs/2020-11-18_16-52-16_screenshot.png]]
+
+
+*** O banco de dados
+    Outro conjunto de subprocessos importante para o funcionamento do
+    sistema está localizado na classe criada para o
+    servidor. No caso este ``conjunto'' conta com as funções
+    de acesso *O(1)*, checagem da consistência e existência
+    de cada tabela *O(1)*, as
+    /queries/ realizadas
+    na base de dados e a conversão das tuplas para  o formato *Json*.
+
+    Novamente, a tarefa de realizar uma ação específica é delegada
+    para um módulo externo como
+    indica a figura [[db1]]. Neste caso, o armazenamento e
+    retorno dos dados guardados estão sob responsabilidade
+    de um *SGDB*, sistema relacional de administração de banco
+    de dados, este sendo o *PostgreSQL*. Tal ferramenta já
+    é conhecida no mercado por suas otimizações sobre
+    os processos de acesso de dados. Pode-se, inclusive,
+    afirmar que o tempo de acesso, processamento e retorno
+    das devidas tuplas é limitado superiormente pelo
+    número *n* de elementos e, com as devidas otimizações as
+    quais são aplicadas por padrão, é possível
+    até ser classificado como 
+    abaixo de uma complexidade *O(n)*.
+
+    #+DOWNLOADED: screenshot @ 2020-11-18 18:14:14
+    #+name: db1
+    #+caption: As funções de acesso à base de dados. 
+    [[file:../../imgs/2020-11-18_18-14-14_screenshot.png]]
+
+    Logo após o processo de leitura do banco de dados,
+    há a transformação de cada tupla em um
+    elemento específico de uma estrutura
+    de dados nativa da linguagem Python chamada dicionário,
+    cujos tempos de acesso são *O(1)*, por, internamente,
+    ter estrutura similar a uma /hash-table/. A mesma
+    estrutura também foi utilizada no mapeamento das
+    funções utilizadas pelos usuários comuns e administradores.
+    A rotina para conversão de cada tupla, ilustrada
+    pela figura [[db2]] assume uma complexidade *O(n)*. Nota-se que os
+    laços de repetição para inserção de dados no dicionário
+    são posicionados *um após o outro*. Cada laço depende do
+    número *n* de elementos retornados pelo /database/ e a inserção
+    em si possui tempo constante. 
+    
+
+    #+DOWNLOADED: screenshot @ 2020-11-18 17:17:30
+    #+name: db2
+    #+caption: O processo de transformação das tuplas retornadas pelo banco
+    #+attr_latex: :scale 0.80
+    [[file:../../imgs/2020-11-18_17-17-30_screenshot.png]]
+*** A interface gráfica
+
+    Após o /parsing/ propriamente dito do objeto
+    recebido através da conexão com o servidor,
+    a aplicação cliente deve, ainda, apresentar
+    para o usuário os dados retornados. Para
+    este caso, para cada item retornado, é
+    retirado um subitem deste para ser
+    posicionado num /grid/, como
+    demonstra a imagem [[int1]].
+    Devido a este comportamento,
+    a função pode ser categorizada como *O(n^2)*.
+    Este também é o maior tempo assintótico
+    por toda a aplicação. 
+    
+#+DOWNLOADED: screenshot @ 2020-11-18 18:41:11
+#+name: int1
+[[file:../../imgs/2020-11-18_18-41-11_screenshot.png]]
+
+
+ 
+** Qualidade de /software/ e gerenciamento de mudança
+   Ambas direção e dimensão nas quais o projeto caminhou
+   surpreenderam o grupo ao demonstrarem, além do potencial
+   o qual o produto apresenta, também o quanto este
+   ``expandiu'' com o tempo. O ato da
+   asserção do /Quality Assurance/
+   foi tomada em conta, mas foi aplicada ao final do curso e de forma
+   *apressada*. Além disso, o grupo admite que o projeto
+   carece de melhor tratamento de exceções e mais
+   verbosidade ao apresentar informações para o usuário. Hão
+   muitos caminhos possíveis que o /software/ possa tomar
+   e todos estes são ``permitidos'' simplesmente pelo
+   fato de ser /free software./ O esforço para implementar
+   tais ideias dependeria da comunidade. A documentação,
+   nomeação de métodos, diagramas, além dos relatórios
+   dispostos publicamente e já mencionados, aderem à qualidade
+   geral do projeto, porém, sem se conformar a alguma norma
+   em específico. Isto se deve ao desconhecimento por
+   parte dos desenvolvedores quando se referindo à normas
+   para engenharia de software e, consequentemente, *SQA*.
+
+   A equipe, porém, está satisfeita com o procedimento
+   aplicado para testes, estes demonstrados
+   em relatório anterior. Nenhum dos testes realizados
+   podem ser ditos como irrelevantes, garantindo, por fim,
+   a qualidade do código. Os requisitos, também, foram
+   constantemente revisados
+   conforme necessário, geralmente após ser notado um
+   conflito com os já coletados à partir das outras histórias de
+   usuários ou questionário. 
+
+*** Gestão de mudança
+    
+    \newpage
+* Bibliografia 
+****** <<github>>
+       SOFTEIROS. Disponível em: \newline
+       < https://github.com/sociedade-do-pastel/softeiros >. Acesso em: 17 novembro 2020.
+****** <<freesoft>>
+       WHAT is free software? Disponível em: \newline
+       <https://www.gnu.org/philosophy/free-sw.en.html
+       >. Acesso em: 17 novembro 2020.
+****** <<pressman>>
+       PRESSMAN, Roger S. *Engenharia de software:*
+       Uma abordagem profissional. 7. ed. Porto Alegre: AMGH Editora, 2011.
+****** <<qt5>>
+       SUPPORTED platforms. Disponível em:
+       < https://doc.qt.io/qt-5/supported-platforms.html >. 
+       Acesso em: 17 novembro 2020.

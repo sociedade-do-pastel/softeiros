@@ -43,6 +43,15 @@ def checkAllTables():
         return 0
 
 def genericDestructiveQuery(QUERY_TO_MAKE, args):
+    '''
+    This procedure MODIFIES the database.
+    The responsible administrator should
+    only call it when needed.
+    ---
+    QUERY_TO_MAKE: str
+    String containing the query to pass to
+    the database
+    '''
     with createConnection() as con:
         with con.cursor() as cursor:
             try:
@@ -52,6 +61,14 @@ def genericDestructiveQuery(QUERY_TO_MAKE, args):
                 print(err)
 
 def genericGetQuery(QUERY_TO_MAKE, args):
+    '''
+    This procedures takes any generic query
+    that does not modify our database.
+    ---
+    QUERY_TO_MAKE: str
+    String containing the query to pass to
+    the database
+    '''
     with createConnection() as con:
         with con.cursor() as cursor:
             try:
