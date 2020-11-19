@@ -1,5 +1,7 @@
 #+TITLE: Projeto de engenharia de software
 
+[[file:imgs/cliEnter.png]]
+
 * Equipe
   - Leon Ferreira Bellini RA: 22218002-8
   - Guilherme Ormond Sampaio RA: 22218007-7
@@ -55,14 +57,13 @@
 
 * Material
 Seção destinada a agrupar as informações relacionadas às etapas do projeto.
-|---------+--------------------------------------------|
-| Entrega | Material                                   |
-|---------+--------------------------------------------|
-| 1ª      | [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/entrega/descricao_geral.org][Descrição Geral]]                            |
-| 2ª      | [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/entrega/levantamento_requisitos.org][Levantamento de Requisitos]], [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/analise_riscos.org][Matrizes SWOT]], |
-|         | [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/Pesquisa%20de%20interesse%20na%20aplica%C3%A7%C3%A3o%20de%20uma%20interface%20de%20exibi%C3%A7%C3%A3o%20e%20busca%20dos%20laborat%C3%B3rios%20de%20CGI%20da%20FEI..csv][Resultados questionário]]                    |
-| 3ª      | [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/crcCards.pdf][CRC Cards]]                                  |
-| 4º      | [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/umls.pdf][UMLs]]                                       |
-| 5º      |                                            |
-|---------+--------------------------------------------|
+|---------+--------------------------------------------------------------------|
+| Entrega | Material                                                           |
+|---------+--------------------------------------------------------------------|
+| 1ª      | [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/entrega/descricao_geral.org][Descrição Geral]]                                                    |
+| 2ª      | [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/entrega/levantamento_requisitos.org][Levantamento de Requisitos]], [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/analise_riscos.org][Matrizes SWOT]], [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/Pesquisa%20de%20interesse%20na%20aplica%C3%A7%C3%A3o%20de%20uma%20interface%20de%20exibi%C3%A7%C3%A3o%20e%20busca%20dos%20laborat%C3%B3rios%20de%20CGI%20da%20FEI..csv][Resultados questionário]] |
+| 3ª      | [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/crcCards.pdf][CRC Cards]]                                                          |
+| 4º      | [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/umls.pdf][UMLs]], [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/entrega/especificacao_teste.org][Especificação de testes]]                                      |
+| 5º      | [[https://github.com/sociedade-do-pastel/softeiros/blob/master/docs/entrega/evolucao.org][Qualidade e evolução]]                                               |
+|---------+--------------------------------------------------------------------|
 

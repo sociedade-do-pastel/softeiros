@@ -22,13 +22,13 @@
   a mudança de um programa/software,
   /forking/ (espelhamento da base de código por um outro mantenedor),
   melhoria, distribuição (desde que respeite as condições
-  apresentadas na licença escolhida pelos desenvolvedores ) por qualquer pessoa.
+  apresentadas na licença escolhida pelos desenvolvedores) por qualquer pessoa.
 
   Neste caso a melhoria contínua *e* evolução seria,
   então, garantida pelas
   constantes modificações propostas pela comunidade ou, até mesmo,
   pelos próprios programadores os quais não estiverem mais
-  vinculados com o projeto. A documentação apresentada em relatório
+  vinculados com o projeto. A documentação apresentada no relatório
   anterior foi outro método definido pelos membros do grupo como uma
   boa forma de *permitir que haja a continuação do desenvolvimento*.
   Estes são, pelo menos os planos da equipe para a *futura* manutenção
@@ -43,9 +43,9 @@
   
   É possível, inclusive, notar que os /commits/ nunca cessaram,
   demonstrando o cuidado da equipe em relação à qualidade do
-  material apresentado. É incontestável que, a quantidade de /commits/, análogo à
+  material apresentado. É incontestável que, a quantidade de /commits/, análogo a
   linhas de código, não determina a qualidade ou não de um /software/,
-  ainda mais se o processo de desenvolvimento pelo qual este não
+  ainda mais se o processo de desenvolvimento pelo qual este foi submetido não
   apresentou algum planejamento. /Commits/ constantes, inclusive, podem
   evidenciar o despreparo de uma equipe ao resolver seus problemas
   através de um *funil*. É garantido pela equipe, através dos inúmeros
@@ -72,7 +72,7 @@
   determinada pelo
   /Software Engineering Institute/ (Instituto de engenharia de /software/),
   a equipe se posiciona por entre os níveis 2 (reproduzível)
-  e 3 (definido)x. Ocorre, sim uma documentação de todo o processo de /software/,
+  e 3 (definido). Ocorre, sim uma documentação de todo o processo de /software/,
   não sendo apenas composta de *cartões CRC*, mas também de
   diagramas de classes *UML* derivados destes cartões, além dos diagramas
   de componentes e modelo-relacional para definição estrutural
@@ -161,7 +161,7 @@
    #+DOWNLOADED: screenshot @ 2020-11-18 16:52:16
    #+name: parse2
    #+caption: Parse realizado por parte do cliente.
-   #+attr_latex: :scale 0.80
+   #+attr_latex: :width \linewidth
    [[file:../../imgs/2020-11-18_16-52-16_screenshot.png]]
 
 
@@ -213,8 +213,9 @@
     #+DOWNLOADED: screenshot @ 2020-11-18 17:17:30
     #+name: db2
     #+caption: O processo de transformação das tuplas retornadas pelo banco
-    #+attr_latex: :scale 0.80
+    #+attr_latex: :width \linewidth
     [[file:../../imgs/2020-11-18_17-17-30_screenshot.png]]
+    \clearpage
 *** A interface gráfica
 
     Após o /parsing/ propriamente dito do objeto
@@ -268,8 +269,22 @@
    usuários ou questionário. 
 
 *** Gestão de mudança
-    
-    \newpage
+Mudanças são um processo contínuo e constante, principalmente
+tratando-se de *eXtreme programming*. Por inúmeras vezes fez-se
+necessária a alteração de estratégias e /approaches/ durante a
+codificação do software.
+
+Embora a equipe esteja plenamente apta a lidar com as mais
+diversas mudanças referentes ao software, mudanças que estejam
+além do domínio aplicável do /dev team/, ou seja, domínio do
+conhecimento, seriam arduamente cabíveis. Tais mudanças
+acarretariam em uma elevada curva de aprendizagem e
+familiarização com o novo ambiente, sendo que, sua aplicação
+teria um reflexo imediato e custoso na qualidade e disponibilidade
+do produto. Contudo, caso dada situação ocorra em um cenário
+planejado, a migração seria mais suave e gradual e, portanto,
+viável.
+\newpage
 * Bibliografia 
 ****** <<github>>
        SOFTEIROS. Disponível em: \newline
