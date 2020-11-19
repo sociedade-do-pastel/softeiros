@@ -172,7 +172,7 @@
     sendo seu maior exemplo, o /kernel/ Linux. Mas além disto, a equipe
     decidiu por incrementar uma versão /minor/ a cada cartão CRC implementado
     e um *bump* numa versão /major/ a cada ciclo de desenvolvimento concluído.
-    No momento, o pacote se encontra na versão *0.6.0.*
+    No momento, o pacote se encontra na versão *0.5.0.*
    
 * Testes empregados
 
